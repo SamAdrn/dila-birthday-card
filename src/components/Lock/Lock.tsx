@@ -62,7 +62,7 @@ export default function Lock({ onUnlock }: LockProps) {
         if (next.length === PASSCODE.length) {
             if (next === PASSCODE) {
                 // Brief pause so the last dot is seen filling
-                setTimeout(onUnlock, 250);
+                setTimeout(onUnlock, 350);
             } else {
                 shake
                     .start({ x: [0, -32, 32, -16, 16, -4, 4, 0], transition: { duration: 0.5 } })
@@ -119,7 +119,7 @@ export default function Lock({ onUnlock }: LockProps) {
                             className={`flex size-[min(5rem,10.5dvh)] cursor-pointer select-none touch-manipulation flex-col items-center justify-center rounded-full bg-white/20 transition-colors hover:bg-white/30 active:bg-white/50 ${digit === '0' ? 'col-start-2' : ''}`}
                             variants={keyVariants}
                         >
-                            <span className="text-4xl leading-none">{digit}</span>
+                            <span className="text-3xl leading-none">{digit}</span>
                             {letters && (
                                 <span className="mt-1 pl-[0.25em] text-[10px] font-medium leading-none tracking-[0.25em]">
                                     {letters}
