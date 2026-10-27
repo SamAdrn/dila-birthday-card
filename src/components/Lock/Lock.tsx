@@ -17,14 +17,6 @@ const KEYS = [
 
 type LockProps = { onUnlock: () => void };
 
-function LockIcon({ className }: { className?: string }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
-            <path d="M17 9V7a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1zM9 7a3 3 0 0 1 6 0v2H9V7z" />
-        </svg>
-    );
-}
-
 export default function Lock({ onUnlock }: LockProps) {
     const [code, setCode] = useState('');
     const shake = useAnimationControls();
@@ -61,8 +53,7 @@ export default function Lock({ onUnlock }: LockProps) {
 
         if (next.length === PASSCODE.length) {
             if (next === PASSCODE) {
-                // Brief pause so the last dot is seen filling
-                setTimeout(onUnlock, 350);
+                onUnlock();
             } else {
                 shake
                     .start({ x: [0, -32, 32, -16, 16, -4, 4, 0], transition: { duration: 0.5 } })
@@ -78,12 +69,7 @@ export default function Lock({ onUnlock }: LockProps) {
     }
 
     return (
-        <div className="h-dvh overflow-hidden flex flex-col items-center justify-between px-10 py-6 gap-4 bg-mist-900 text-white">
-            {/* Notch, with the lock icon inside it on the left */}
-            <div className="flex h-7.5 w-40 items-center bg-gray-950 rounded-full px-2">
-                <LockIcon className="size-3.5" />
-            </div>
-
+        <div className="h-dvh overflow-hidden flex flex-col items-center justify-between px-10 pt-notch pb-6 gap-4 bg-mist-900 text-white">
             {/* Keypad */}
             <div className="flex flex-col items-center justify-center gap-[min(2.5rem,5dvh)]">
                 <motion.div
