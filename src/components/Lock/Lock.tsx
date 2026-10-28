@@ -80,7 +80,7 @@ export default function Lock({ onUnlock }: LockProps) {
                 >
                     <h2 className="text-xl leading-4">Enter Passcode</h2>
                     <p className="text-sm font-extralight w-50 text-center">
-                        Your password is required to open this surprise
+                        Your passcode is required to open this surprise
                     </p>
                     <motion.div className="flex flex-row gap-6 mt-4" animate={shake}>
                         {Array.from({ length: PASSCODE.length }, (_, i) => (

@@ -3,11 +3,10 @@ import { useState } from 'react';
 
 import Lock from './components/Lock/Lock';
 import Notch from './components/Notch/Notch';
-import BirthdayPrompt from './components/BirthdayPrompt/BirthdayPrompt';
-import Segue from './components/Segue/Segue';
+import Story from './components/Story/Story';
 import Wallpaper from './components/Wallpaper/Wallpaper';
 
-type Stage = 'lock' | 'prompt' | 'segue' | 'main';
+type Stage = 'lock' | 'story' | 'main';
 
 function App() {
     const [stage, setStage] = useState<Stage>('lock');
@@ -15,7 +14,7 @@ function App() {
 
     function handleUnlock() {
         setUnlocked(true); // the notch starts animating now
-        setTimeout(() => setStage('prompt'), 700); // then the screen transition
+        setTimeout(() => setStage('story'), 700); // then the screen transition
     }
 
     return (
@@ -30,20 +29,15 @@ function App() {
                             <Lock onUnlock={handleUnlock} />
                         </motion.div>
                     )}
-                    {stage === 'prompt' && (
+                    {stage === 'story' && (
                         <motion.div
-                            key="prompt"
+                            key="story"
                             initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, transition: { duration: 0.8 } }}
                             transition={{ duration: 0.35 }}
                         >
-                            <BirthdayPrompt onContinue={() => setStage('segue')} />
-                        </motion.div>
-                    )}
-                    {stage === 'segue' && (
-                        <motion.div key="segue" exit={{ opacity: 0 }} transition={{ duration: 1.2 }}>
-                            <Segue onDone={() => setStage('main')} />
+                            <Story onDone={() => setStage('main')} />
                         </motion.div>
                     )}
                     {stage === 'main' && (
