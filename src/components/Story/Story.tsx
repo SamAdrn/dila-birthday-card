@@ -1,7 +1,7 @@
-import { motion, useAnimationControls, type Variants } from 'framer-motion';
+import { motion, useAnimationControls, type Transition, type Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-import { BABY_PHOTO_YEAR, yearsAgo } from '../../content/years';
+import { BEATS, yearsAgo } from '../../content/years';
 import BabyPhoto from '../BabyPhoto/BabyPhoto';
 
 type StoryProps = { onDone: () => void };
@@ -20,8 +20,14 @@ const MODAL_FADE_S = 0.5;
 const MODAL_DROP_PX = 24;
 const YEARS_DELAY_S = BG_DELAY_S + MODAL_DELAY_S + MODAL_FADE_S; // right after the modal is gone
 const YEARS_FADE_S = 1.5;
-const CONTINUE_DELAY_S = YEARS_DELAY_S + 1; // a few seconds after the modal is gone
+const CONTINUE_DELAY_S = YEARS_DELAY_S + 1;
 const CONTINUE_FADE_S = 1;
+
+// Beats: each Continue tap crossfades to the next photo and label
+const BEAT_OUT_S = 0.6;
+const BEAT_IN_S = 1;
+const BEAT_IN_DELAY_S = 0.2;
+const CONTINUE_RETURN_S = 1.6; // Continue steps aside, then comes back this long after a tap
 
 // "and now…", measured from the final Continue tap
 const PHOTO_OUT_S = 0.5; // photo and label fade away first
@@ -32,6 +38,9 @@ const NOW_DONE_MS = (NOW_DELAY_S + NOW_FADE_S) * 1000 + NOW_HOLD_MS;
 
 const PILL = 'h-13 rounded-full text-[17px] font-semibold cursor-pointer transition-colors disabled:cursor-default';
 const PILL_PRIMARY = 'text-white bg-blue-600/90 hover:bg-blue-500/90 active:bg-blue-400/90';
+
+// Stand-ins until the real photos arrive (Step 6); distinct so the crossfade is visible
+const PLACEHOLDER_TINTS = ['bg-gray-400', 'bg-amber-300', 'bg-sky-300', 'bg-rose-300'];
 
 // iOS-style dismiss: everything drops a little and fades, all at once
 const modalLeave = {
@@ -63,11 +72,25 @@ const cardVariants: Variants = {
     leave: { ...modalLeave, scale: 1 },
 };
 
+// A beat's photo or label: quick out, slower in
+function fade(on: boolean, enter: Transition = { delay: BEAT_IN_DELAY_S, duration: BEAT_IN_S }) {
+    return { opacity: on ? 1 : 0, transition: on ? enter : { duration: BEAT_OUT_S } };
+}
+
 export default function Story({ onDone }: StoryProps) {
     const [allowed, setAllowed] = useState(false);
     const [canContinue, setCanContinue] = useState(false);
+    const [beat, setBeat] = useState(0);
+    const [waiting, setWaiting] = useState(false); // Continue is hidden while the next beat crossfades in
     const [now, setNow] = useState(false);
     const shake = useAnimationControls();
+
+    // Continue comes back a moment after the tap that hid it
+    useEffect(() => {
+        if (!waiting) return;
+        const id = setTimeout(() => setWaiting(false), CONTINUE_RETURN_S * 1000);
+        return () => clearTimeout(id);
+    }, [waiting]);
 
     // After "and now…" has had its moment, hand over to the hero
     useEffect(() => {
@@ -83,10 +106,15 @@ export default function Story({ onDone }: StoryProps) {
 
     function handleContinue() {
         setCanContinue(false);
-        setNow(true);
+        if (beat < BEATS.length - 1) {
+            setBeat(beat + 1);
+            setWaiting(true);
+        } else {
+            setNow(true);
+        }
     }
 
-    const showContinue = allowed && !now;
+    const showContinue = allowed && !now && !waiting;
 
     return (
         <motion.div
@@ -107,16 +135,44 @@ export default function Story({ onDone }: StoryProps) {
                             className={`relative flex w-full justify-center transition-opacity ${now ? 'opacity-0' : 'opacity-100'}`}
                             style={{ transitionDuration: `${PHOTO_OUT_S}s` }}
                         >
-                            <BabyPhoto className="w-full aspect-5/3 shadow-sm" variants={photoVariants} custom={0} />
-                            <div className="pointer-events-none absolute inset-x-0 top-full mt-5 flex justify-center">
-                                <motion.p
-                                    className="font-display text-4xl leading-snug font-light italic text-gray-100"
-                                    initial={false}
-                                    animate={{ opacity: allowed ? 1 : 0 }}
-                                    transition={{ delay: YEARS_DELAY_S, duration: YEARS_FADE_S }}
-                                >
-                                    {yearsAgo(BABY_PHOTO_YEAR)} years ago
-                                </motion.p>
+                            {/* Every beat's photo is mounted at once and crossfades by opacity */}
+                            <BabyPhoto
+                                className="relative w-full aspect-5/3 overflow-hidden shadow-sm"
+                                variants={photoVariants}
+                                custom={0}
+                            >
+                                {BEATS.map((b, i) => (
+                                    <motion.div
+                                        key={b.year}
+                                        className="absolute inset-0"
+                                        initial={false}
+                                        animate={fade(i === beat)}
+                                    >
+                                        {b.photo ? (
+                                            <img src={b.photo} alt="" className="size-full object-cover" />
+                                        ) : (
+                                            <div
+                                                className={`size-full ${PLACEHOLDER_TINTS[i % PLACEHOLDER_TINTS.length]}`}
+                                            />
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </BabyPhoto>
+                            {/* Labels share one grid cell so they stack in place */}
+                            <div className="pointer-events-none absolute inset-x-0 top-full mt-5 grid place-items-center">
+                                {BEATS.map((b, i) => (
+                                    <motion.p
+                                        key={b.year}
+                                        className="col-start-1 row-start-1 font-display text-4xl leading-snug font-light italic text-gray-100"
+                                        initial={false}
+                                        animate={fade(
+                                            allowed && i === beat,
+                                            i === 0 ? { delay: YEARS_DELAY_S, duration: YEARS_FADE_S } : undefined
+                                        )}
+                                    >
+                                        {yearsAgo(b.year)} years ago
+                                    </motion.p>
+                                ))}
                             </div>
                         </div>
                         <motion.h2
@@ -173,7 +229,7 @@ export default function Story({ onDone }: StoryProps) {
                 initial={false}
                 animate={{ opacity: showContinue ? 1 : 0 }}
                 transition={{
-                    delay: showContinue ? CONTINUE_DELAY_S : 0,
+                    delay: showContinue && beat === 0 ? CONTINUE_DELAY_S : 0,
                     duration: showContinue ? CONTINUE_FADE_S : 0.4,
                 }}
                 onAnimationComplete={() => {
