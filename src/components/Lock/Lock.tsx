@@ -1,7 +1,7 @@
 import { motion, useAnimationControls, type Variants } from 'framer-motion';
 import { useState } from 'react';
 
-const PASSCODE = '311001';
+const PASSCODE = '1';
 const KEYS = [
     { digit: '1', letters: '' },
     { digit: '2', letters: 'ABC' },

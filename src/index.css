@@ -1,5 +1,5 @@
 @import 'tailwindcss';
 
 @theme {
-    --spacing-notch: 8rem;
+    --spacing-notch: 6rem;
 }

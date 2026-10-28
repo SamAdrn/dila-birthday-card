@@ -1,64 +1,28 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import BabyPhoto from '../BabyPhoto/BabyPhoto';
+import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 type SegueProps = { onDone: () => void };
 
-// The photo glides for 2s (see BabyPhoto), so the text and the hint wait for it
-const READY_DELAY_MS = 4200;
+// The prompt's last frame is the "24 years ago" beat; the Segue picks up after it
+const NOW_DELAY_S = 0.8; // wait for the prompt to fade out
 const NOW_HOLD_MS = 3000;
 
 export default function Segue({ onDone }: SegueProps) {
-    const [beat, setBeat] = useState<'then' | 'now'>('then');
-    const [ready, setReady] = useState(false);
-
     useEffect(() => {
-        const id = setTimeout(() => setReady(true), READY_DELAY_MS);
-        return () => clearTimeout(id);
-    }, []);
-
-    useEffect(() => {
-        if (beat !== 'now') return;
         const id = setTimeout(onDone, NOW_HOLD_MS);
         return () => clearTimeout(id);
-    }, [beat, onDone]);
-
-    function handleTap() {
-        if (ready && beat === 'then') setBeat('now');
-    }
+    }, [onDone]);
 
     return (
-        // Already dark: BirthdayPrompt fades the background to this same black while it leaves
-        <div
-            className="relative h-dvh overflow-hidden flex flex-col items-center justify-center gap-8 px-10 pt-notch text-white bg-black/90"
-            onClick={handleTap}
-        >
-            <AnimatePresence>
-                {beat === 'then' && <BabyPhoto className="w-full aspect-4/3" exit={{ opacity: 0, scale: 0.9 }} />}
-            </AnimatePresence>
-
-            <AnimatePresence mode="wait">
-                <motion.p
-                    key={beat}
-                    className="text-3xl font-semibold"
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0, transition: { delay: beat === 'then' ? 2 : 0.2, duration: 1.5 } }}
-                    exit={{ opacity: 0, y: -12 }}
-                >
-                    {beat === 'then' ? '24 years ago' : 'and now…'}
-                </motion.p>
-            </AnimatePresence>
-
-            {beat === 'then' && (
-                <motion.p
-                    className="absolute bottom-10 text-sm text-white/60"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 4.2 }}
-                >
-                    tap to continue
-                </motion.p>
-            )}
+        // Same color the prompt's background fades to, so the hand-off has no seam
+        <div className="h-dvh overflow-hidden flex items-center justify-center px-10 pt-notch text-white bg-[rgb(14,18,20)]">
+            <motion.p
+                className="text-3xl font-semibold"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0, transition: { delay: NOW_DELAY_S, duration: 1.5 } }}
+            >
+                and now…
+            </motion.p>
         </div>
     );
 }
