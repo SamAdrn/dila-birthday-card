@@ -2,8 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Lock from './components/Lock/Lock';
 import Notch from './components/Notch/Notch';
+import BirthdayPrompt from './components/BirthdayPrompt/BirthdayPrompt';
 
-type Stage = 'lock' | 'calendar' | 'main';
+type Stage = 'lock' | 'prompt' | 'main';
 
 function App() {
     const [stage, setStage] = useState<Stage>('lock');
@@ -11,7 +12,7 @@ function App() {
 
     function handleUnlock() {
         setUnlocked(true); // the notch starts animating now
-        setTimeout(() => setStage('calendar'), 700); // then the screen transition
+        setTimeout(() => setStage('prompt'), 700); // then the screen transition
     }
 
     return (
@@ -25,15 +26,13 @@ function App() {
                             <Lock onUnlock={handleUnlock} />
                         </motion.div>
                     )}
-                    {stage === 'calendar' && (
+                    {stage === 'prompt' && (
                         <motion.div
-                            key="calendar"
+                            key="prompt"
                             initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
                         >
-                            <div className="min-h-dvh pt-notch grid place-items-center text-white">
-                                Calendar reveal goes here
-                            </div>
+                            <BirthdayPrompt onContinue={() => setStage('main')} />
                         </motion.div>
                     )}
                     {stage === 'main' && (
