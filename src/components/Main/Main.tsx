@@ -1,4 +1,5 @@
 import Hero from '../Hero/Hero';
+import Wishes from '../Wishes/Wishes';
 
 // The morning gradient lives on this wrapper, not on the hero, so it runs on unbroken
 // into the wishes below. The stops are in px (like the design), so the page can grow.
@@ -15,6 +16,7 @@ export default function Main() {
             }}
         >
             <Hero />
+            <Wishes />
         </div>
     );
 }
