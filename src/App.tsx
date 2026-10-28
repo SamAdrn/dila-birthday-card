@@ -1,10 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+
 import Lock from './components/Lock/Lock';
 import Notch from './components/Notch/Notch';
 import BirthdayPrompt from './components/BirthdayPrompt/BirthdayPrompt';
+import Segue from './components/Segue/Segue';
 
-type Stage = 'lock' | 'prompt' | 'main';
+type Stage = 'lock' | 'prompt' | 'segue' | 'main';
 
 function App() {
     const [stage, setStage] = useState<Stage>('lock');
@@ -31,12 +33,26 @@ function App() {
                             key="prompt"
                             initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.35 }}
                         >
-                            <BirthdayPrompt onContinue={() => setStage('main')} />
+                            <BirthdayPrompt onContinue={() => setStage('segue')} />
+                        </motion.div>
+                    )}
+                    {stage === 'segue' && (
+                        <motion.div key="segue" exit={{ opacity: 0 }} transition={{ duration: 1.2 }}>
+                            <Segue onDone={() => setStage('main')} />
                         </motion.div>
                     )}
                     {stage === 'main' && (
-                        <div className="min-h-dvh pt-notch grid place-items-center text-white">Main page goes here</div>
+                        <motion.div
+                            key="main"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6 }}
+                            className="min-h-dvh pt-notch grid place-items-center text-white"
+                        >
+                            Main page goes here
+                        </motion.div>
                     )}
                 </AnimatePresence>
             </main>
