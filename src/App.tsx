@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 import Lock from './components/Lock/Lock';
+import Main from './components/Main/Main';
 import Notch from './components/Notch/Notch';
 import Story from './components/Story/Story';
 import Wallpaper from './components/Wallpaper/Wallpaper';
@@ -47,7 +48,7 @@ function App() {
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6 }}
                         >
-                            Main page goes here
+                            <Main />
                         </motion.div>
                     )}
                 </AnimatePresence>
