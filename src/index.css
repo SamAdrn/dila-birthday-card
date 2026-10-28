@@ -2,4 +2,27 @@
 
 @theme {
     --spacing-notch: 6rem;
+
+    --font-display: 'Fraunces Variable', Georgia, serif;
+
+    --color-segue: #0e1214; /* the dark the prompt fades to; also the Hero overlay */
+    --color-dusk-800: #1b2d4d;
+    --color-dusk-700: #3a2f66;
+    --color-dusk-500: #7b3f6a;
+
+    --color-morning-200: #c9dff8;
+    --color-morning-100: #e3ecfa;
+    --color-peach-200: #ffd9b8;
+    --color-cream-100: #fff2e4;
+
+    --color-ink: #1d2b4a;
+    --color-coral: #d9482a;
+    --color-butter: #ffc857;
+
+    --color-wish-peach: #ffd9bf;
+    --color-wish-butter: #ffe9a8;
+    --color-wish-sky: #cbe1f7;
+    --color-wish-mint: #cbebdd;
+    --color-wish-lilac: #e0d5f7;
+    --color-wish-blush: #fbd3da;
 }
