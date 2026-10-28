@@ -5,6 +5,7 @@ import Lock from './components/Lock/Lock';
 import Notch from './components/Notch/Notch';
 import BirthdayPrompt from './components/BirthdayPrompt/BirthdayPrompt';
 import Segue from './components/Segue/Segue';
+import Wallpaper from './components/Wallpaper/Wallpaper';
 
 type Stage = 'lock' | 'prompt' | 'segue' | 'main';
 
@@ -19,7 +20,8 @@ function App() {
 
     return (
         // Outer shell fills the viewport; the inner column keeps content phone-width on desktop
-        <div className="min-h-dvh bg-mist-900 flex justify-center">
+        <div className="isolate min-h-dvh bg-mist-900 flex justify-center">
+            <Wallpaper visible={stage !== 'main'} />
             <Notch unlocked={unlocked} />
             <main className="w-full max-w-md">
                 <AnimatePresence mode="popLayout">
@@ -50,7 +52,6 @@ function App() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.6 }}
-                            className="min-h-dvh pt-notch grid place-items-center text-white"
                         >
                             Main page goes here
                         </motion.div>
