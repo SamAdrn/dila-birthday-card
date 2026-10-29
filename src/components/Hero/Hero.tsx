@@ -153,6 +153,12 @@ export default function Hero() {
 
             <Sparkle className="text-butter" x={5.1} y={17.8} size={26} delay={SPARKLE_DELAY_S} />
             <Sparkle className="text-white" x={86.7} y={7.1} size={20} delay={SPARKLE_DELAY_S} twinkleDelay={0.8} />
+            {/* Down the edges and beside "Dila", clear of the photo and the headline. White only up
+                high, where the sky is blue; lower down the page is cream and white would vanish. */}
+            <Sparkle className="text-white" x={92.5} y={21} size={14} delay={SPARKLE_DELAY_S} twinkleDelay={0.4} />
+            <Sparkle className="text-butter" x={2.5} y={46} size={16} delay={SPARKLE_DELAY_S} twinkleDelay={1.2} />
+            <Sparkle className="text-[#f7a6b8]" x={91.5} y={61} size={14} delay={SPARKLE_DELAY_S} twinkleDelay={1.6} />
+            <Sparkle className="text-[#ffb88a]" x={22} y={81} size={18} delay={SPARKLE_DELAY_S} twinkleDelay={2} />
 
             <motion.button
                 className="relative flex h-14 cursor-pointer flex-col items-center justify-center gap-0.5 px-6 text-sm font-semibold text-ink/80"
