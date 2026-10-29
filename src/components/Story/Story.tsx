@@ -20,14 +20,15 @@ const MODAL_FADE_S = 0.5;
 const MODAL_DROP_PX = 24;
 const YEARS_DELAY_S = BG_DELAY_S + MODAL_DELAY_S + MODAL_FADE_S; // right after the modal is gone
 const YEARS_FADE_S = 1.5;
-const CONTINUE_DELAY_S = YEARS_DELAY_S + 1;
-const CONTINUE_FADE_S = 1;
+const CONTINUE_DELAY_S = YEARS_DELAY_S + 0.6; // the first "years ago" is still fading in
+const CONTINUE_BACK_DELAY_S = 0.15; // the same beat the Allow button gets
+const CONTINUE_TAPPABLE_S = 0.25; // taps start working this long after it begins to appear
 
 // Beats: each Continue tap crossfades to the next photo and label
 const BEAT_OUT_S = 0.6;
 const BEAT_IN_S = 1;
 const BEAT_IN_DELAY_S = 0.2;
-const CONTINUE_RETURN_S = 1.6; // Continue steps aside, then comes back this long after a tap
+const CONTINUE_RETURN_S = 1.2; // Continue steps aside, then comes back this long after a tap (the crossfade's length)
 
 // "and now…", measured from the final Continue tap
 const PHOTO_OUT_S = 0.5; // photo and label fade away first
@@ -57,6 +58,15 @@ const pieceVariants: Variants = {
         transition: { delay: 0.15 + i * 0.06 },
     }),
     leave: modalLeave,
+};
+
+// Continue moves like the Allow button: it rises in the way the pieces do and drops away like
+// the modal does, just without the modal's wait. It sets no `transition` of its own on the
+// button, so the tap spring stays the default one (a button-level transition would slow it down).
+const continueVariants: Variants = {
+    hidden: pieceVariants.hidden,
+    show: (delay: number) => ({ opacity: 1, y: 0, transition: { delay } }),
+    leave: { ...modalLeave, transition: { ...modalLeave.transition, delay: 0 } },
 };
 
 // The photo shares the entrance but holds still on leave
@@ -115,6 +125,15 @@ export default function Story({ onDone }: StoryProps) {
     }
 
     const showContinue = allowed && !now && !waiting;
+
+    // Taps count once the button is on its way in. Waiting for the spring to settle would leave it
+    // looking ready but dead for over a second.
+    useEffect(() => {
+        if (!showContinue) return;
+        const delayS = beat === 0 ? CONTINUE_DELAY_S : CONTINUE_BACK_DELAY_S;
+        const id = setTimeout(() => setCanContinue(true), (delayS + CONTINUE_TAPPABLE_S) * 1000);
+        return () => clearTimeout(id);
+    }, [showContinue, beat]);
 
     return (
         <motion.div
@@ -226,15 +245,10 @@ export default function Story({ onDone }: StoryProps) {
             {/* Disabled (so no taps or keyboard) until it has fully faded in */}
             <motion.button
                 className={`${PILL} absolute inset-x-0 bottom-14 mx-auto w-65 ${PILL_PRIMARY}`}
-                initial={false}
-                animate={{ opacity: showContinue ? 1 : 0 }}
-                transition={{
-                    delay: showContinue && beat === 0 ? CONTINUE_DELAY_S : 0,
-                    duration: showContinue ? CONTINUE_FADE_S : 0.4,
-                }}
-                onAnimationComplete={() => {
-                    if (showContinue) setCanContinue(true);
-                }}
+                variants={continueVariants}
+                custom={beat === 0 ? CONTINUE_DELAY_S : CONTINUE_BACK_DELAY_S}
+                initial="hidden"
+                animate={showContinue ? 'show' : allowed ? 'leave' : 'hidden'}
                 whileTap={{ scale: 0.97 }}
                 disabled={!canContinue}
                 onClick={handleContinue}

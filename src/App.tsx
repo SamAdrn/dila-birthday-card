@@ -1,17 +1,23 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Lock from './components/Lock/Lock';
 import Main from './components/Main/Main';
 import Notch from './components/Notch/Notch';
 import Story from './components/Story/Story';
 import Wallpaper from './components/Wallpaper/Wallpaper';
+import { HERO_PHOTO } from './content/photos';
 
 type Stage = 'lock' | 'story' | 'main';
 
 function App() {
     const [stage, setStage] = useState<Stage>('lock');
     const [unlocked, setUnlocked] = useState(false);
+
+    // The hero is the last stop, so start fetching its photo now and it's ready when the story ends
+    useEffect(() => {
+        if (HERO_PHOTO) new Image().src = HERO_PHOTO;
+    }, []);
 
     function handleUnlock() {
         setUnlocked(true); // the notch starts animating now

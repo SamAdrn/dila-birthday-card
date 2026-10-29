@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 
+import { HERO_PHOTO } from '../../content/photos';
 import Confetti from './Confetti';
 import Sparkle from './Sparkle';
 
@@ -21,6 +22,9 @@ const POPPER_DELAY_S = LETTERS_DELAY_S + LETTER_COUNT * LETTER_STEP_S;
 const NAME_DELAY_S = POPPER_DELAY_S + 0.3;
 const UNDERLINE_DELAY_S = NAME_DELAY_S + 0.4;
 const HINT_DELAY_S = NAME_DELAY_S + 1;
+
+const GLOW_DRIFT_PX = 16; // how far the peach glow wanders from its spot
+const GLOW_DRIFT_S = 22; // one full lap
 
 const photoVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95, y: 30 },
@@ -88,10 +92,15 @@ export default function Hero() {
                 animate={{ opacity: 0, transition: { delay: OVERLAY_DELAY_S, duration: OVERLAY_FADE_S } }}
             />
 
-            {/* Peach glow behind the photo */}
-            <div
+            {/* Peach glow behind the photo; it slowly circles, a few px each way */}
+            <motion.div
                 className="pointer-events-none absolute -left-4 top-5 size-105"
-                style={{ background: 'radial-gradient(circle, var(--color-peach-200) 0%, transparent 68%)' }}
+                style={{ background: 'radial-gradient(circle, var(--color-peach-100) 0%, transparent 68%)' }}
+                animate={{
+                    x: [0, GLOW_DRIFT_PX, 0, -GLOW_DRIFT_PX, 0],
+                    y: [-GLOW_DRIFT_PX, 0, GLOW_DRIFT_PX, 0, -GLOW_DRIFT_PX],
+                }}
+                transition={{ duration: GLOW_DRIFT_S, repeat: Infinity, ease: 'easeInOut' }}
             />
             <Confetti delay={CONFETTI_DELAY_S} />
 
@@ -99,7 +108,9 @@ export default function Hero() {
                 <motion.div
                     className="relative aspect-300/380 h-[min(380px,45dvh)] shrink-0 overflow-hidden rounded-t-full rounded-b-md border-8 border-white bg-gray-400 shadow-xl"
                     variants={photoVariants}
-                />
+                >
+                    {HERO_PHOTO && <img src={HERO_PHOTO} alt="Dila" className="size-full object-cover" />}
+                </motion.div>
 
                 <h1
                     className="relative flex flex-col items-center font-display text-5xl leading-none font-black tracking-tight text-shadow-lg"

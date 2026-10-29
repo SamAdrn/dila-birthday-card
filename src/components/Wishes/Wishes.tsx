@@ -8,7 +8,7 @@ const RIGHT = WISHES.filter((_, i) => i % 2 === 1);
 // The hero's "Your wishes" button scrolls to this id
 export default function Wishes() {
     return (
-        <section id="wishes" className="px-6 pt-14 pb-24">
+        <section id="wishes" className="px-6 pt-14 pb-12">
             <h2 className="font-display text-[34px] leading-snug font-bold text-ink">Wishes for you</h2>
             <p className="mt-2 mb-6 text-[15px] leading-normal text-ink/70">From the people who love you.</p>
             <div className="flex items-start gap-2">
