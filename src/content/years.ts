@@ -1,14 +1,13 @@
-export const BABY_PHOTO_YEAR = 2002;
+import type { PhotoSource } from './photos';
 
-export type Beat = { year: number; photo: string | null };
+export type Beat = { year: number; photo: PhotoSource | null };
 
-// The first beat is the photo the prompt opens with; the rest play after Continue.
-// Photos are null until the real ones arrive (Step 6).
+/** Every photo to show in the story after the prompt */
 export const BEATS: Beat[] = [
-    { year: BABY_PHOTO_YEAR, photo: null },
-    { year: 2006, photo: null },
-    { year: 2012, photo: null },
-    { year: 2019, photo: null },
+    { year: 2002, photo: { src: '/photos/5-3-young-2.jpg', shape: 'landscape' } },
+    { year: 2006, photo: { src: '/photos/3-5-young-2.jpg', shape: 'portrait' } },
+    { year: 2012, photo: { src: '/photos/3-5-young-3.jpg', shape: 'portrait' } },
+    { year: 2019, photo: { src: '/photos/3-5-young-1.jpg', shape: 'portrait' } },
 ];
 
 export const yearsAgo = (year: number) => new Date().getFullYear() - year;

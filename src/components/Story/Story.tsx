@@ -1,8 +1,9 @@
 import { motion, useAnimationControls, type Transition, type Variants } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import { PROMPT_PHOTO } from '../../content/photos';
 import { BEATS, yearsAgo } from '../../content/years';
-import BabyPhoto from '../BabyPhoto/BabyPhoto';
+import Photo from '../Photo/Photo';
 
 type StoryProps = { onDone: () => void };
 
@@ -15,20 +16,25 @@ const BG_DARK = `rgb(${SEGUE_RGB})`;
 // Leave sequence, in seconds
 const BG_DELAY_S = 1; // after the Allow tap
 const BG_FADE_S = 1.5;
-const MODAL_DELAY_S = 0.25; // after the background fade starts
+const MODAL_DELAY_S = 0.5; // after the Allow tap
 const MODAL_FADE_S = 0.5;
 const MODAL_DROP_PX = 24;
-const YEARS_DELAY_S = BG_DELAY_S + MODAL_DELAY_S + MODAL_FADE_S; // right after the modal is gone
+const MODAL_GONE_S = MODAL_DELAY_S + MODAL_FADE_S;
+const PHOTO_FADE_S = 2; // every "years ago" photo dissolves in over this long
+// The first "years ago" photo starts dissolving in over the prompt photo as the modal leaves, and
+// the label waits until it has fully arrived
+const PHOTO_SWAP_DELAY_S = MODAL_DELAY_S;
+const YEARS_DELAY_S = PHOTO_SWAP_DELAY_S + PHOTO_FADE_S;
 const YEARS_FADE_S = 1.5;
 const CONTINUE_DELAY_S = YEARS_DELAY_S + 0.6; // the first "years ago" is still fading in
 const CONTINUE_BACK_DELAY_S = 0.15; // the same beat the Allow button gets
-const CONTINUE_TAPPABLE_S = 0.25; // taps start working this long after it begins to appear
+const CONTINUE_TAPPABLE_S = 0.15; // taps start working this long after it begins to appear
 
-// Beats: each Continue tap crossfades to the next photo and label
-const BEAT_OUT_S = 0.6;
-const BEAT_IN_S = 1;
-const BEAT_IN_DELAY_S = 0.2;
-const CONTINUE_RETURN_S = 1.2; // Continue steps aside, then comes back this long after a tap (the crossfade's length)
+// Beats: each Continue tap dissolves to the next photo, then its label arrives
+const BEAT_OUT_S = 0.6; // the old label
+const BEAT_IN_S = 1; // the new label
+const BEAT_IN_DELAY_S = PHOTO_FADE_S; // after the photo has arrived
+const CONTINUE_RETURN_S = PHOTO_FADE_S + 1; // Continue steps aside, then comes back when the photo has arrived
 
 // "and now…", measured from the final Continue tap
 const PHOTO_OUT_S = 0.5; // photo and label fade away first
@@ -40,14 +46,11 @@ const NOW_DONE_MS = (NOW_DELAY_S + NOW_FADE_S) * 1000 + NOW_HOLD_MS;
 const PILL = 'h-13 rounded-full text-[17px] font-semibold cursor-pointer transition-colors disabled:cursor-default';
 const PILL_PRIMARY = 'text-white bg-blue-600/90 hover:bg-blue-500/90 active:bg-blue-400/90';
 
-// Stand-ins until the real photos arrive (Step 6); distinct so the crossfade is visible
-const PLACEHOLDER_TINTS = ['bg-gray-400', 'bg-amber-300', 'bg-sky-300', 'bg-rose-300'];
-
 // iOS-style dismiss: everything drops a little and fades, all at once
 const modalLeave = {
     opacity: 0,
     y: MODAL_DROP_PX,
-    transition: { delay: BG_DELAY_S + MODAL_DELAY_S, duration: MODAL_FADE_S, ease: 'easeIn' as const },
+    transition: { delay: MODAL_DELAY_S, duration: MODAL_FADE_S, ease: 'easeIn' as const },
 };
 
 const pieceVariants: Variants = {
@@ -69,7 +72,7 @@ const continueVariants: Variants = {
     leave: { ...modalLeave, transition: { ...modalLeave.transition, delay: 0 } },
 };
 
-// The photo shares the entrance but holds still on leave
+// The photo frame shares the entrance but holds still on leave
 const photoVariants: Variants = {
     ...pieceVariants,
     leave: { opacity: 1, y: 0 },
@@ -82,9 +85,17 @@ const cardVariants: Variants = {
     leave: { ...modalLeave, scale: 1 },
 };
 
-// A beat's photo or label: quick out, slower in
+// A beat's label: quick out, slower in
 function fade(on: boolean, enter: Transition = { delay: BEAT_IN_DELAY_S, duration: BEAT_IN_S }) {
     return { opacity: on ? 1 : 0, transition: on ? enter : { duration: BEAT_OUT_S } };
+}
+
+// A beat's photo dissolves in over the one beneath it. The old photo holds until the new one has
+// fully arrived, then drops out unseen, so nothing dips while the two overlap.
+function photoFade(on: boolean, delay = 0): { opacity: number; transition: Transition } {
+    return on
+        ? { opacity: 1, transition: { delay, duration: PHOTO_FADE_S } }
+        : { opacity: 0, transition: { delay: PHOTO_FADE_S, duration: 0 } };
 }
 
 export default function Story({ onDone }: StoryProps) {
@@ -93,6 +104,7 @@ export default function Story({ onDone }: StoryProps) {
     const [beat, setBeat] = useState(0);
     const [waiting, setWaiting] = useState(false); // Continue is hidden while the next beat crossfades in
     const [now, setNow] = useState(false);
+    const [modalGone, setModalGone] = useState(false); // the card has finished leaving
     const shake = useAnimationControls();
 
     // Continue comes back a moment after the tap that hid it
@@ -101,6 +113,14 @@ export default function Story({ onDone }: StoryProps) {
         const id = setTimeout(() => setWaiting(false), CONTINUE_RETURN_S * 1000);
         return () => clearTimeout(id);
     }, [waiting]);
+
+    // The frame stays landscape (the prompt photo's shape) while the card is on screen, so the card
+    // doesn't change size under the user's finger; after that it follows the current beat.
+    useEffect(() => {
+        if (!allowed) return;
+        const id = setTimeout(() => setModalGone(true), MODAL_GONE_S * 1000);
+        return () => clearTimeout(id);
+    }, [allowed]);
 
     // After "and now…" has had its moment, hand over to the hero
     useEffect(() => {
@@ -125,6 +145,7 @@ export default function Story({ onDone }: StoryProps) {
     }
 
     const showContinue = allowed && !now && !waiting;
+    const photoShape = (modalGone && BEATS[beat].photo?.shape) || 'landscape';
 
     // Taps count once the button is on its way in. Waiting for the spring to settle would leave it
     // looking ready but dead for over a second.
@@ -142,42 +163,56 @@ export default function Story({ onDone }: StoryProps) {
             animate={{ backgroundColor: allowed ? BG_DARK : BG_DIMMED }}
             transition={{ delay: BG_DELAY_S, duration: BG_FADE_S, ease: 'easeInOut' }}
         >
+            {/* Modal container */}
             <motion.div className="w-full max-w-75" animate={shake}>
                 <motion.div className="relative" initial="hidden" animate={allowed ? 'leave' : 'show'}>
+                    {/* Modal fill */}
                     <motion.div
                         className="absolute inset-0 bg-white/90 backdrop-blur-xl rounded-4xl shadow-lg"
                         variants={cardVariants}
                     />
-                    <div className="relative flex flex-col items-center gap-3 p-5 text-center">
-                        {/* A plain CSS fade: when "and now…" starts, the photo and its label go together */}
+                    <div className="relative flex flex-col items-center gap-1 p-5 text-center">
                         <div
                             className={`relative flex w-full justify-center transition-opacity ${now ? 'opacity-0' : 'opacity-100'}`}
                             style={{ transitionDuration: `${PHOTO_OUT_S}s` }}
                         >
-                            {/* Every beat's photo is mounted at once and crossfades by opacity */}
-                            <BabyPhoto
-                                className="relative w-full aspect-5/3 overflow-hidden shadow-sm"
-                                variants={photoVariants}
-                                custom={0}
-                            >
+                            {/* Photo Container */}
+                            <Photo shape={photoShape} variants={photoVariants} custom={0}>
+                                {/* Prompt Photo */}
+                                <motion.div
+                                    className="absolute inset-0"
+                                    initial={false}
+                                    animate={{
+                                        opacity: allowed ? 0 : 1,
+                                        transition: {
+                                            delay: allowed ? PHOTO_SWAP_DELAY_S + PHOTO_FADE_S : 0,
+                                            duration: 0,
+                                        },
+                                    }}
+                                >
+                                    {PROMPT_PHOTO && (
+                                        <img src={PROMPT_PHOTO} alt="" className="size-full object-cover" />
+                                    )}
+                                </motion.div>
+
+                                {/* Year Photos */}
                                 {BEATS.map((b, i) => (
                                     <motion.div
                                         key={b.year}
                                         className="absolute inset-0"
                                         initial={false}
-                                        animate={fade(i === beat)}
+                                        animate={photoFade(allowed && i === beat, i === 0 ? PHOTO_SWAP_DELAY_S : 0)}
                                     >
                                         {b.photo ? (
-                                            <img src={b.photo} alt="" className="size-full object-cover" />
+                                            <img src={b.photo.src} alt="" className="size-full object-cover" />
                                         ) : (
-                                            <div
-                                                className={`size-full ${PLACEHOLDER_TINTS[i % PLACEHOLDER_TINTS.length]}`}
-                                            />
+                                            <div className="size-full" />
                                         )}
                                     </motion.div>
                                 ))}
-                            </BabyPhoto>
-                            {/* Labels share one grid cell so they stack in place */}
+                            </Photo>
+
+                            {/* Year labels */}
                             <div className="pointer-events-none absolute inset-x-0 top-full mt-5 grid place-items-center">
                                 {BEATS.map((b, i) => (
                                     <motion.p
@@ -194,18 +229,28 @@ export default function Story({ onDone }: StoryProps) {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Prompt Heading */}
                         <motion.h2
-                            className="mt-1 text-base leading-snug font-semibold text-black"
+                            className="mt-4 text-base text-left leading-snug font-semibold text-black"
                             variants={pieceVariants}
                             custom={1}
                         >
                             Allow “Birthday Celebration” to use your whole day?
                         </motion.h2>
-                        <motion.p className="text-sm leading-snug text-gray-600" variants={pieceVariants} custom={2}>
+
+                        {/* Prompt Message */}
+                        <motion.p
+                            className="text-sm text-left leading-snug text-gray-600"
+                            variants={pieceVariants}
+                            custom={2}
+                        >
                             Your birthday has been detected to be on the 31st of October. This will allow your phone to
                             begin your wonderful celebration.
                         </motion.p>
-                        <div className="mt-1 flex w-full flex-col gap-2">
+
+                        {/* Prompt Buttons */}
+                        <div className="mt-4 flex w-full flex-col gap-2">
                             <motion.button
                                 className={`${PILL} w-full ${PILL_PRIMARY}`}
                                 variants={pieceVariants}
@@ -231,6 +276,7 @@ export default function Story({ onDone }: StoryProps) {
                 </motion.div>
             </motion.div>
 
+            {/* Final Year Label */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <motion.p
                     className="font-display text-5xl leading-snug font-light italic text-gray-100"
@@ -242,7 +288,7 @@ export default function Story({ onDone }: StoryProps) {
                 </motion.p>
             </div>
 
-            {/* Disabled (so no taps or keyboard) until it has fully faded in */}
+            {/* Continue Button (to progress year photos only) */}
             <motion.button
                 className={`${PILL} absolute inset-x-0 bottom-14 mx-auto w-65 ${PILL_PRIMARY}`}
                 variants={continueVariants}
