@@ -36,18 +36,199 @@ export const WISHES: Wish[] = [
         tint: 'butter',
     },
     {
-        id: 'tama',
-        name: 'Tama',
-        title: 'I still laugh every time I think about it. Never change!',
+        id: 'agasha',
+        name: 'Agasha',
+        title: 'Happy 25th birthday Dil! 🥳🥳',
+        message: 'Semoga terus semangat lari supaya taun depan bisa race bareng2 lagi 🏃‍♀️💨',
     },
     {
-        id: 'kenzo',
-        name: 'Kenzo',
-        title: 'Dinner is on the calendar, and no, you cannot get out of it.',
+        id: 'steffanus',
+        name: 'Steffanus',
+        title: 'Pibesdey Dhil!',
+        message: 'Wish you all the best! Semoga dikabulkan semua yang di semogakan!',
     },
     {
-        id: 'sari',
-        name: 'Sari',
-        title: 'Watching you grow up has been one of my favorite things. 🎂',
+        id: 'christabel',
+        name: 'Christabel',
+        title: 'Happyyyy Birthday DILAALALALA!!!',
+        message: 'Wishing you a wonderful birthday 🕺🕺',
+    },
+    {
+        id: 'vinno',
+        name: 'Vinno Tan',
+        title: 'Happy Birthday Dila!!!',
+        message: 'Jgn gila gila yaa! Tambahin rasa cinta ke orang tua, sam, dan teman” biar bisa makin deket!',
+    },
+    {
+        id: 'biru',
+        name: 'Warna Biru',
+        title: 'Happy 25th Fadhilaa gas pickleball',
+        message: 'Semoga di beri kesehatan selalu, kelancaraan dan ajarin lari dong hehehe',
+    },
+    {
+        id: 'rafael',
+        name: 'Rafael Rusydi',
+        title: 'Happy birthday Fadila Wish You All The Best i hope you have a nice Birthday 🎂 🎉🎉🎂🎉',
+        message:
+            'Mudah2an you get everything you wanted in life, always healthy and happy hope everything works out well',
+    },
+    {
+        id: 'louis-luce',
+        name: 'LouLu',
+        title: 'happy Birthday Dila! Panjang umur sehat selalu, all your wish come true in the upcoming years. Cheers!',
+        message: 'Miso also says happy birthday kakak 🐱 🐱 🐱 ',
+    },
+    {
+        id: 'jo',
+        name: 'Jo :)',
+        title: 'hepi bdei',
+        message:
+            'Dila!! Happy 25th birthday!! Hope you have so much fun celebrating and an awesome year ahead, and that the quarter life crisis doesn’t hit too hard hahhaha… all the best :)',
+    },
+    {
+        id: 'fajri',
+        name: 'Fudge',
+        title: 'Happy belated birthdayy Fadhilaaa!! ',
+        message:
+            'Hope you stay healthy, happy, and blessed alwaysss 🫶🏻💗 hope everything you’re working towards works out for you and life keeps treating you good. Keep being your cool ass self and never changee!! 🥳�',
+    },
+    {
+        id: 'satrio',
+        name: 'Bang Disco',
+        title: 'Happy Birthday Dila semoga selalu di dalam lindungan Allah SWT. Panjang umur pendek problem!!!!!',
+    },
+    {
+        id: 'natasha',
+        name: 'Natasha',
+        title: 'Happy mid-quarter life crisis birthday!',
+        message:
+            'Welcome to big 25, hope this year brings you so much happiness and everything your heart desires!!! 💕💕💕',
+    },
+    {
+        id: 'rafy',
+        name: 'Rafy',
+        title: 'Selamat Hbd Mba Dila',
+        message: 'Semoga yg disemogakan terkabulkan. Wyatb!',
+    },
+    {
+        id: 'laskar',
+        name: 'Laskar',
+        title: 'Happy bday dila!',
+        message: 'Congrats on making it to 25! Wishing you all the best in life :)',
+    },
+    {
+        id: 'ray-and-sheila',
+        name: 'Ray and Sheila',
+        title: 'Happiest 25th birthday, Dila!',
+        message:
+            "We are grateful for your friendship and all the adventures we get to share! May the year ahead bring you happines, good health, and as much joy as you bring to those around you. Here's to many more adventures together! 🥂",
+    },
+    {
+        id: 'alhubab',
+        name: 'Alhubab',
+        title: 'Happy quarter of life Dila!',
+        message: 'Semoga panjang semua nya',
+    },
+    {
+        id: 'denisa',
+        name: 'Denisa',
+        title: 'HAPPY BIRTHDAY DILA SAYANG ❤️YAY 25!!!!',
+        message:
+            'Happy birthday Dila ❤️ you’re so loved by everyone around you, I hope you get to spend ur birthday with ur loved ones di Indo. Can’t wait to celebrate with you when you get back!!',
+    },
+    {
+        id: 'iyung',
+        name: 'Yungkeee',
+        title: 'Happy Birthday Fadila!!',
+        message: 'Happy Birthday Fadila, I hope you had a great time in Indo! Wish you all the best!!',
+    },
+    {
+        id: 'princess',
+        name: 'Princess Consuela Banana Hammock',
+        title: 'SELAMAT ULANG TAHUN, DEAR FADHILA',
+        message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
+    },
+    {
+        id: 'alvito',
+        name: 'Alvito pake F',
+        title: 'HABEDE FADH',
+        message: `Selamat ulang tahun fadhila, semoga makin jago larinya biar bisa jadi full marathoner, semoga langgeng sama sam dan CEPET NIKAH biar gue ada alesan ke US hehehehehe. sorry kalo kita gabisa ketemu di jakarta sekarang, semoga next gue n RSL yg bisa nyamperin lu sama sam sama buita ke US WAKAKAKAKA. 
+
+                semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
+    },
+    {
+        id: 'irham',
+        name: 'Irham',
+        title: 'happy birthday broo',
+        message: 'wish u all the bestt, semoga cepet dapet green card 🍻',
+    },
+    {
+        id: 'bagas',
+        name: 'bagas baso',
+        title: 'FAD HBD 🎉🥳🎂',
+        message: 'semoga semakin baddie',
+    },
+    {
+        id: 'gande',
+        name: 'Gande',
+        title: 'HBD FADH!!!',
+        message:
+            'Semoga di usia yang sekarang semakin jaya di darat, laut dan udara serta di lapangan pickleball dan track lari. Sehat selalu, dilancarkan rezekinya dan semakin sukses 🙏🏻🙏🏻🙏🏻',
+    },
+    {
+        id: 'fawwaz',
+        name: 'Fawwaz',
+        title: 'Happy Birthday Dila!!',
+        message: 'Happy Birthday Dila! Hope all your wishes come true this year!',
+    },
+    {
+        id: 'p',
+        name: 'PE',
+        title: 'welcome to your quarter-life era fadd 🙌🏻',
+        message:
+            'HBD YAHH FAD, may life always be kind to you super grateful for this friendship, even across 10k miles ✈️',
+    },
+    {
+        id: 'wanderlust',
+        name: 'The wanderlust',
+        title: 'HAPPY BIRTHDAY JAGUNG BAKAR ALIAS FADHH!! ',
+        message:
+            'Semoga in this part of your life bisa achieve apa yang lo kejar yaaa, bisa kasih yang terbaik buat lo dan bu ita! Sehat selalu yee ',
+    },
+    {
+        id: 'raska',
+        name: 'Raska',
+        title: 'Habede',
+        message: 'Habede',
+    },
+    {
+        id: 'denisa-carla',
+        name: 'Denisa Carla',
+        title: 'Happy 25th Birthday!!',
+        message:
+            'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
+    },
+    {
+        id: 'tempo',
+        name: "The Tempo's (Mos, Yol, Biru and Jingga)",
+        title: 'Cheers to 25 – to the Fabulous Fadhila!',
+        message: `Cheers to 25! 
+25 years young, 25 years awesome, and still counting!
+May this year bring you 25x more happiness, adventures, and reasons to smile!.Muuuach!
+
+With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
+    },
+    {
+        id: 'faris',
+        name: 'Faris',
+        title: 'Happy birthday, Dila!',
+        message:
+            'Welcome to the new age. Semoga diberi umur panjang, sukses dunia akhirat. Makin seru lagi. Aamiin yra',
+    },
+    {
+        id: 'asa',
+        name: 'Asa',
+        title: 'Happy makin tua fad!!',
+        message: 'Semoga segalanya dilancarkan dan dimudahkan diberikan kesehatan selalu',
     },
 ];
