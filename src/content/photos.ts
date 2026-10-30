@@ -33,7 +33,7 @@ export const WISH_PHOTOS: WishPhoto[] = [
         shape: 'landscape',
         after: 'ray-and-sheila',
     },
-    { id: 'salma-wish-photo', src: '/photos/wish-salma.jpg', shape: 'portrait', after: 'princess' },
+    { id: 'salma-wish-photo', src: '/photos/wish-salma.jpg', shape: 'portrait', after: 'salma' },
     { id: 'rafy-wish-photo', src: '/photos/wish-rafy.jpg', shape: 'landscape', after: 'rafy' },
     { id: 'raska-wish-photo', src: '/photos/wish-raska.jpg', shape: 'landscape', after: 'raska' },
     { id: 'william-wish-photo', src: '/photos/wish-william.jpg', shape: 'portrait', after: 'william' },
@@ -42,4 +42,5 @@ export const WISH_PHOTOS: WishPhoto[] = [
     { id: 'natasha-wish-photo', src: '/photos/wish-natasha.jpg', shape: 'portrait', after: 'natasha' },
     { id: 'faris-wish-photo', src: '/photos/wish-faris.jpg', shape: 'portrait', after: 'faris' },
     { id: 'rian-wish-photo', src: '/photos/wish-rian.jpg', shape: 'portrait', after: 'rian' },
+    { id: 'christabel-wish-photo', src: '/photos/wish-christabel.jpg', shape: 'landscape', after: 'christabel' },
 ];

@@ -47,6 +47,12 @@ export const WISHES: Wish[] = [
         tint: 'butter',
     },
     {
+        id: 'salma',
+        name: 'mochichim',
+        title: "HAPPY BIRTHDAY FADEHILA here's to more chicken dinners",
+        message: 'semoga sehat bahagia selalu kaya raya selamat dunia akhirat aamiin',
+    },
+    {
         id: 'yuda',
         name: 'YUDS',
         title: 'HBD',
@@ -129,12 +135,21 @@ export const WISHES: Wish[] = [
         message: 'Wishing you a wonderful birthday 🕺🕺',
     },
     {
-        id: 'louis-luce',
-        name: 'LouLu',
-        title: 'happy Birthday Dila! Panjang umur sehat selalu, all your wish come true in the upcoming years. Cheers!',
-        message: 'Miso also says happy birthday kakak 🐱 🐱 🐱 ',
-    },
+        id: 'tempo',
+        name: "The Tempo's (Mos, Yol, Biru and Jingga)",
+        title: 'Cheers to 25 – to the Fabulous Fadhila!',
+        message: `Cheers to 25! 
+25 years young, 25 years awesome, and still counting!
+May this year bring you 25x more happiness, adventures, and reasons to smile!.Muuuach!
 
+With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
+    },
+    {
+        id: 'tante-vivi',
+        name: 'Princess Consuela Banana Hammock',
+        title: 'SELAMAT ULANG TAHUN, DEAR FADHILA',
+        message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
+    },
     {
         id: 'alvito',
         name: 'Alvito pake F',
@@ -142,6 +157,33 @@ export const WISHES: Wish[] = [
         message: `Selamat ulang tahun fadhila, semoga makin jago larinya biar bisa jadi full marathoner, semoga langgeng sama sam dan CEPET NIKAH biar gue ada alesan ke US hehehehehe. sorry kalo kita gabisa ketemu di jakarta sekarang, semoga next gue n RSL yg bisa nyamperin lu sama sam sama buita ke US WAKAKAKAKA. 
 
                 semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
+    },
+    {
+        id: 'rafy',
+        name: 'Rafy',
+        title: 'Selamat Hbd Mba Dila',
+        message: 'Semoga yg disemogakan terkabulkan. Wyatb!',
+    },
+    {
+        id: 'radut',
+        name: 'radut',
+        title: 'happy 25th fadh! so u gotta run 25k ok',
+        message:
+            'happiest birthday to ex bintaro peeps. wishing you endless blessing and tons of luck ahead. keep lacing up ya 🏃‍♀️🏃‍♀️',
+    },
+    {
+        id: 'denisa-carla',
+        name: 'Denisa Carla',
+        title: 'Happy 25th Birthday!!',
+        message:
+            'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
+    },
+    {
+        id: 'ray-and-sheila',
+        name: 'Ray and Sheila',
+        title: 'Happiest 25th birthday, Dila!',
+        message:
+            "We are grateful for your friendship and all the adventures we get to share! May the year ahead bring you happines, good health, and as much joy as you bring to those around you. Here's to many more adventures together! 🥂",
     },
     {
         id: 'fajri',
@@ -163,18 +205,10 @@ export const WISHES: Wish[] = [
         title: 'Happy Birthday Dila semoga selalu di dalam lindungan Allah SWT. Panjang umur pendek problem!!!!!',
     },
     {
-        id: 'radut',
-        name: 'radut',
-        title: 'happy 25th fadh! so u gotta run 25k ok',
-        message:
-            'happiest birthday to ex bintaro peeps. wishing you endless blessing and tons of luck ahead. keep lacing up ya 🏃‍♀️🏃‍♀️',
-    },
-    {
-        id: 'denisa-carla',
-        name: 'Denisa Carla',
-        title: 'Happy 25th Birthday!!',
-        message:
-            'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
+        id: 'louis-luce',
+        name: 'LouLu',
+        title: 'happy Birthday Dila! Panjang umur sehat selalu, all your wish come true in the upcoming years. Cheers!',
+        message: 'Miso also says happy birthday kakak 🐱 🐱 🐱 ',
     },
     {
         id: 'william',
@@ -183,33 +217,10 @@ export const WISHES: Wish[] = [
         message: 'May your next year be full of pain free miles on strava!',
     },
     {
-        id: 'rafy',
-        name: 'Rafy',
-        title: 'Selamat Hbd Mba Dila',
-        message: 'Semoga yg disemogakan terkabulkan. Wyatb!',
-    },
-    {
-        id: 'tempo',
-        name: "The Tempo's (Mos, Yol, Biru and Jingga)",
-        title: 'Cheers to 25 – to the Fabulous Fadhila!',
-        message: `Cheers to 25! 
-25 years young, 25 years awesome, and still counting!
-May this year bring you 25x more happiness, adventures, and reasons to smile!.Muuuach!
-
-With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
-    },
-    {
         id: 'laskar',
         name: 'Laskar',
         title: 'Happy bday dila!',
         message: 'Congrats on making it to 25! Wishing you all the best in life :)',
-    },
-    {
-        id: 'ray-and-sheila',
-        name: 'Ray and Sheila',
-        title: 'Happiest 25th birthday, Dila!',
-        message:
-            "We are grateful for your friendship and all the adventures we get to share! May the year ahead bring you happines, good health, and as much joy as you bring to those around you. Here's to many more adventures together! 🥂",
     },
     {
         id: 'alhubab',
@@ -222,12 +233,6 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         name: 'Yungkeee',
         title: 'Happy Birthday Fadila!!',
         message: 'Happy Birthday Fadila, I hope you had a great time in Indo! Wish you all the best!!',
-    },
-    {
-        id: 'princess',
-        name: 'Princess Consuela Banana Hammock',
-        title: 'SELAMAT ULANG TAHUN, DEAR FADHILA',
-        message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
     },
     {
         id: 'jo',
