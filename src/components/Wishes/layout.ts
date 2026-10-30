@@ -19,7 +19,13 @@ const PHOTO_WEIGHT: Record<Shape, number> = { landscape: 90, portrait: 250 };
 // (Math.random would repaint the cards each time). Change the seed to reshuffle them.
 const TINT_SEED = 311001;
 
-export type Entry = { kind: 'wish'; wish: Wish; tint: Tint } | { kind: 'photo'; photo: WishPhoto };
+// Every third wish gets a sparkle on its outer corner (the left column's left edge, the right column's
+// right edge, so it sits in the gutter), alternating top and bottom
+const SPARKLE_EVERY = 3;
+
+export type Corner = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+
+export type Entry = { kind: 'wish'; wish: Wish; tint: Tint; corner?: Corner } | { kind: 'photo'; photo: WishPhoto };
 
 // A block always lands in one column: a wish and the photos pinned under it, or a lone photo
 type Block = { wish?: Wish; photos: WishPhoto[] };
@@ -84,6 +90,7 @@ export function layoutColumns(wishes: Wish[], photos: WishPhoto[]) {
     let rightHeight = RIGHT_OFFSET;
     let leftTint: Tint | undefined;
     let rightTint: Tint | undefined;
+    let wishCount = 0;
 
     for (const block of blocks) {
         const goesLeft = leftHeight <= rightHeight;
@@ -95,7 +102,11 @@ export function layoutColumns(wishes: Wish[], photos: WishPhoto[]) {
             used[tint]++;
             if (goesLeft) leftTint = tint;
             else rightTint = tint;
-            entries.push({ kind: 'wish', wish: block.wish, tint });
+            const sparkles = wishCount % SPARKLE_EVERY === 1;
+            const vertical = Math.floor(wishCount / SPARKLE_EVERY) % 2 === 0 ? 'top' : 'bottom';
+            const corner: Corner | undefined = sparkles ? `${vertical}-${goesLeft ? 'left' : 'right'}` : undefined;
+            wishCount++;
+            entries.push({ kind: 'wish', wish: block.wish, tint, corner });
             height += wishWeight(block.wish);
         }
         for (const photo of block.photos) {

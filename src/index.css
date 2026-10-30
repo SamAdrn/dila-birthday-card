@@ -5,7 +5,7 @@
 
     --font-display: 'Fraunces Variable', Georgia, serif;
 
-    --color-segue: #0e1214; /* the dark the prompt fades to; also the Hero overlay */
+    --color-segue: #0e1214;
     --color-dusk-800: #1b2d4d;
     --color-dusk-700: #3a2f66;
     --color-dusk-500: #7b3f6a;
@@ -15,6 +15,9 @@
     --color-peach-100: #ffe5d0;
     --color-peach-200: #ffd9b8;
     --color-cream-100: #fff2e4;
+
+    --color-golden-200: #ffd89a;
+    --color-sunset-200: #ffb9a6;
 
     --color-ink: #1d2b4a;
     --color-coral: #d9482a;

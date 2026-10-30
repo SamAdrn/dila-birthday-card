@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 
 import type { Tint, Wish } from '../../content/wishes';
+import Sparkle from '../Hero/Sparkle';
+import type { Corner } from './layout';
 
 const TINT_BG: Record<Tint, string> = {
     peach: 'bg-wish-peach',
@@ -11,12 +13,30 @@ const TINT_BG: Record<Tint, string> = {
     blush: 'bg-wish-blush',
 };
 
-export default function WishCard({ wish, tint }: { wish: Wish; tint: Tint }) {
+// A deeper shade of the card's own tint, so the sparkle shows on the card and on the background behind it
+const TINT_SPARKLE: Record<Tint, string> = {
+    peach: 'text-[#ff9a62]',
+    butter: 'text-[#ffb300]',
+    sky: 'text-[#5b9be0]',
+    mint: 'text-[#4fbf93]',
+    lilac: 'text-[#9a7be0]',
+    blush: 'text-[#f0708f]',
+};
+
+// The sparkle's box is centered on the corner, so half of it hangs outside the card
+const CORNER_POSITION: Record<Corner, string> = {
+    'top-left': '-top-2.5 -left-2.5',
+    'top-right': '-top-2.5 -right-2.5',
+    'bottom-left': '-bottom-2.5 -left-2.5',
+    'bottom-right': '-bottom-2.5 -right-2.5',
+};
+
+export default function WishCard({ wish, tint, corner }: { wish: Wish; tint: Tint; corner?: Corner }) {
     const { name, title, message } = wish;
 
     return (
         <motion.article
-            className={`rounded-lg p-4 text-ink ${TINT_BG[tint]}`}
+            className={`relative rounded-lg p-4 text-ink shadow-md ${TINT_BG[tint]}`}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '0px 0px -40px 0px' }}
@@ -41,6 +61,20 @@ export default function WishCard({ wish, tint }: { wish: Wish; tint: Tint }) {
                 {/* Name */}
                 <p className="min-w-0 text-sm leading-tight font-medium text-ink/70">{name}</p>
             </div>
+
+            {/* Corner sparkle (some cards only). z-10 keeps it above the card that comes next in the column */}
+            {corner && (
+                <span className={`pointer-events-none absolute z-10 size-5 ${CORNER_POSITION[corner]}`}>
+                    <Sparkle
+                        className={TINT_SPARKLE[tint]}
+                        x={0}
+                        y={0}
+                        size={20}
+                        delay={0}
+                        twinkleDelay={(name.length % 4) * 0.5}
+                    />
+                </span>
+            )}
         </motion.article>
     );
 }

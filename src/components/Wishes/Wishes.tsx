@@ -10,7 +10,7 @@ function EntryCard({ entry }: { entry: Entry }) {
     return entry.kind === 'photo' ? (
         <PhotoCard photo={entry.photo} />
     ) : (
-        <WishCard wish={entry.wish} tint={entry.tint} />
+        <WishCard wish={entry.wish} tint={entry.tint} corner={entry.corner} />
     );
 }
 
