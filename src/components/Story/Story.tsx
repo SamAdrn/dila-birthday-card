@@ -20,13 +20,22 @@ const MODAL_DELAY_S = 0.5; // after the Allow tap
 const MODAL_FADE_S = 0.5;
 const MODAL_DROP_PX = 24;
 const MODAL_GONE_S = MODAL_DELAY_S + MODAL_FADE_S;
-const PHOTO_FADE_S = 2; // every "years ago" photo dissolves in over this long
-// The first "years ago" photo starts dissolving in over the prompt photo as the modal leaves, and
-// the label waits until it has fully arrived
-const PHOTO_SWAP_DELAY_S = MODAL_DELAY_S;
-const YEARS_DELAY_S = PHOTO_SWAP_DELAY_S + PHOTO_FADE_S;
-const YEARS_FADE_S = 1.5;
-const CONTINUE_DELAY_S = YEARS_DELAY_S + 0.6; // the first "years ago" is still fading in
+const PHOTO_FADE_S = 2; // every "years ago" photo after the first dissolves in over this long
+
+// Photo Handoff: one thing changes at a time, in this order, all measured from the Allow tap.
+// 1. the prompt photo fades out, alone on the dark
+// 2. the empty frame reshapes from 5:3 to 3:5;
+// 3. the first "years ago" photo develops in
+// 4. its label arrives as the photo lands.
+const PROMPT_FADE_DELAY_S = MODAL_GONE_S; // wait until the card has left
+const PROMPT_FADE_S = 0.6;
+const RESHAPE_DELAY_S = 1.8; // the frame is empty by now (and the background is half dark)
+const RESHAPE_S = 0.8; // must match `duration-800` in Photo.tsx
+const FIRST_DELAY_S = RESHAPE_DELAY_S + RESHAPE_S;
+const FIRST_FADE_S = 1.3;
+const YEARS_DELAY_S = FIRST_DELAY_S + FIRST_FADE_S - 0.2; // the label starts as the photo lands
+const YEARS_FADE_S = 1.2;
+const CONTINUE_DELAY_S = YEARS_DELAY_S + 0.6;
 const CONTINUE_BACK_DELAY_S = 0.15; // the same beat the Allow button gets
 const CONTINUE_TAPPABLE_S = 0.15; // taps start working this long after it begins to appear
 
@@ -34,7 +43,8 @@ const CONTINUE_TAPPABLE_S = 0.15; // taps start working this long after it begin
 const BEAT_OUT_S = 0.6; // the old label
 const BEAT_IN_S = 1; // the new label
 const BEAT_IN_DELAY_S = PHOTO_FADE_S; // after the photo has arrived
-const CONTINUE_RETURN_S = PHOTO_FADE_S + 1; // Continue steps aside, then comes back when the photo has arrived
+// Continue steps aside, then comes back as the label finishes landing (it used to wait for it)
+const CONTINUE_RETURN_S = BEAT_IN_DELAY_S + BEAT_IN_S - 0.4;
 
 // "and now…", measured from the final Continue tap
 const PHOTO_OUT_S = 0.5; // photo and label fade away first
@@ -92,9 +102,13 @@ function fade(on: boolean, enter: Transition = { delay: BEAT_IN_DELAY_S, duratio
 
 // A beat's photo dissolves in over the one beneath it. The old photo holds until the new one has
 // fully arrived, then drops out unseen, so nothing dips while the two overlap.
-function photoFade(on: boolean, delay = 0): { opacity: number; transition: Transition } {
+function photoFade(
+    on: boolean,
+    delay = 0,
+    duration = PHOTO_FADE_S
+): { opacity: number; transition: Transition } {
     return on
-        ? { opacity: 1, transition: { delay, duration: PHOTO_FADE_S } }
+        ? { opacity: 1, transition: { delay, duration } }
         : { opacity: 0, transition: { delay: PHOTO_FADE_S, duration: 0 } };
 }
 
@@ -104,8 +118,19 @@ export default function Story({ onDone }: StoryProps) {
     const [beat, setBeat] = useState(0);
     const [waiting, setWaiting] = useState(false); // Continue is hidden while the next beat crossfades in
     const [now, setNow] = useState(false);
-    const [modalGone, setModalGone] = useState(false); // the card has finished leaving
+    const [reshaped, setReshaped] = useState(false); // the empty frame has started changing shape
     const shake = useAnimationControls();
+
+    // Get the years photos decoded while she is still reading the prompt, so the first dissolve
+    // never starts on an image the browser hasn't had to paint yet
+    useEffect(() => {
+        BEATS.forEach(({ photo }) => {
+            if (!photo) return;
+            const img = new Image();
+            img.src = photo.src;
+            img.decode().catch(() => {});
+        });
+    }, []);
 
     // Continue comes back a moment after the tap that hid it
     useEffect(() => {
@@ -114,11 +139,11 @@ export default function Story({ onDone }: StoryProps) {
         return () => clearTimeout(id);
     }, [waiting]);
 
-    // The frame stays landscape (the prompt photo's shape) while the card is on screen, so the card
-    // doesn't change size under the user's finger; after that it follows the current beat.
+    // The frame stays landscape (the prompt photo's shape) until the prompt photo has faded out, so
+    // nothing is inside it while it changes shape; after that it follows the current beat.
     useEffect(() => {
         if (!allowed) return;
-        const id = setTimeout(() => setModalGone(true), MODAL_GONE_S * 1000);
+        const id = setTimeout(() => setReshaped(true), RESHAPE_DELAY_S * 1000);
         return () => clearTimeout(id);
     }, [allowed]);
 
@@ -145,7 +170,7 @@ export default function Story({ onDone }: StoryProps) {
     }
 
     const showContinue = allowed && !now && !waiting;
-    const photoShape = (modalGone && BEATS[beat].photo?.shape) || 'landscape';
+    const photoShape = (reshaped && BEATS[beat].photo?.shape) || 'landscape';
 
     // Taps count once the button is on its way in. Waiting for the spring to settle would leave it
     // looking ready but dead for over a second.
@@ -172,61 +197,75 @@ export default function Story({ onDone }: StoryProps) {
                         variants={cardVariants}
                     />
                     <div className="relative flex flex-col items-center gap-1 p-5 text-center">
+                        {/* Photo slot: always the prompt photo's 5:3, so the card never changes size. The
+                            photo is centred in it and can outgrow it, so it reshapes around its own centre. */}
                         <div
-                            className={`relative flex w-full justify-center transition-opacity ${now ? 'opacity-0' : 'opacity-100'}`}
+                            className={`relative flex aspect-5/3 min-h-0 w-full items-center justify-center transition-opacity ${now ? 'opacity-0' : 'opacity-100'}`}
                             style={{ transitionDuration: `${PHOTO_OUT_S}s` }}
                         >
-                            {/* Photo Container */}
-                            <Photo shape={photoShape} variants={photoVariants} custom={0}>
-                                {/* Prompt Photo */}
-                                <motion.div
-                                    className="absolute inset-0"
-                                    initial={false}
-                                    animate={{
-                                        opacity: allowed ? 0 : 1,
-                                        transition: {
-                                            delay: allowed ? PHOTO_SWAP_DELAY_S + PHOTO_FADE_S : 0,
-                                            duration: 0,
-                                        },
-                                    }}
+                            {/* Photo stack: as tall as the photo, so the labels can hang from its bottom edge */}
+                            <div className="relative flex w-full shrink-0 justify-center">
+                                {/* Photo Container (the empty frame is a faint glass outline) */}
+                                <Photo
+                                    className="bg-white/7 ring-1 ring-inset ring-white/20"
+                                    shape={photoShape}
+                                    variants={photoVariants}
+                                    custom={0}
                                 >
-                                    {PROMPT_PHOTO && (
-                                        <img src={PROMPT_PHOTO} alt="" className="size-full object-cover" />
-                                    )}
-                                </motion.div>
-
-                                {/* Year Photos */}
-                                {BEATS.map((b, i) => (
+                                    {/* Prompt Photo */}
                                     <motion.div
-                                        key={b.year}
                                         className="absolute inset-0"
                                         initial={false}
-                                        animate={photoFade(allowed && i === beat, i === 0 ? PHOTO_SWAP_DELAY_S : 0)}
+                                        animate={{
+                                            opacity: allowed ? 0 : 1,
+                                            transition: {
+                                                delay: allowed ? PROMPT_FADE_DELAY_S : 0,
+                                                duration: allowed ? PROMPT_FADE_S : 0,
+                                            },
+                                        }}
                                     >
-                                        {b.photo ? (
-                                            <img src={b.photo.src} alt="" className="size-full object-cover" />
-                                        ) : (
-                                            <div className="size-full" />
+                                        {PROMPT_PHOTO && (
+                                            <img src={PROMPT_PHOTO} alt="" className="size-full object-cover" />
                                         )}
                                     </motion.div>
-                                ))}
-                            </Photo>
 
-                            {/* Year labels */}
-                            <div className="pointer-events-none absolute inset-x-0 top-full mt-5 grid place-items-center">
-                                {BEATS.map((b, i) => (
-                                    <motion.p
-                                        key={b.year}
-                                        className="col-start-1 row-start-1 font-display text-4xl leading-snug font-light italic text-gray-100"
-                                        initial={false}
-                                        animate={fade(
-                                            allowed && i === beat,
-                                            i === 0 ? { delay: YEARS_DELAY_S, duration: YEARS_FADE_S } : undefined
-                                        )}
-                                    >
-                                        {yearsAgo(b.year)} years ago
-                                    </motion.p>
-                                ))}
+                                    {/* Year Photos */}
+                                    {BEATS.map((b, i) => (
+                                        <motion.div
+                                            key={b.year}
+                                            className="absolute inset-0"
+                                            initial={false}
+                                            animate={
+                                                i === 0
+                                                    ? photoFade(allowed && beat === 0, FIRST_DELAY_S, FIRST_FADE_S)
+                                                    : photoFade(allowed && i === beat)
+                                            }
+                                        >
+                                            {b.photo ? (
+                                                <img src={b.photo.src} alt="" className="size-full object-cover" />
+                                            ) : (
+                                                <div className="size-full" />
+                                            )}
+                                        </motion.div>
+                                    ))}
+                                </Photo>
+
+                                {/* Year labels */}
+                                <div className="pointer-events-none absolute inset-x-0 top-full mt-5 grid place-items-center">
+                                    {BEATS.map((b, i) => (
+                                        <motion.p
+                                            key={b.year}
+                                            className="col-start-1 row-start-1 font-display text-4xl leading-snug font-light italic text-gray-100"
+                                            initial={false}
+                                            animate={fade(
+                                                allowed && i === beat,
+                                                i === 0 ? { delay: YEARS_DELAY_S, duration: YEARS_FADE_S } : undefined
+                                            )}
+                                        >
+                                            {yearsAgo(b.year)} years ago
+                                        </motion.p>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 

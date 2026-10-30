@@ -17,7 +17,7 @@ const ASPECT: Record<Shape, string> = {
 export default function Photo({ shape = 'landscape', className = '', ...props }: PhotoProps) {
     return (
         <motion.div
-            className={`relative overflow-hidden rounded-2xl shadow-sm transition-[aspect-ratio,width] duration-500 ease-in-out ${WIDTH[shape]} ${ASPECT[shape]} ${className}`}
+            className={`relative overflow-hidden rounded-2xl shadow-sm transition-[aspect-ratio,width] duration-800 ease-in-out ${WIDTH[shape]} ${ASPECT[shape]} ${className}`}
             {...props}
         />
     );
