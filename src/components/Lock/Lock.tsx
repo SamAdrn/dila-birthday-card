@@ -1,7 +1,7 @@
 import { motion, useAnimationControls, type Variants } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-const PASSCODE = '1';
+const PASSCODE = '311001';
 const KEYS = [
     { digit: '1', letters: '' },
     { digit: '2', letters: 'ABC' },
@@ -20,6 +20,8 @@ type LockProps = { onUnlock: () => void };
 export default function Lock({ onUnlock }: LockProps) {
     const [code, setCode] = useState('');
     const shake = useAnimationControls();
+    const [poppers, setPoppers] = useState<{ id: number; drift: number }[]>([]);
+    const popperId = useRef(0);
 
     // Once all digits are in, input is ignored until the code is cleared or we unlock
     const isFull = code.length >= PASSCODE.length;
@@ -61,6 +63,12 @@ export default function Lock({ onUnlock }: LockProps) {
                 setTimeout(() => setCode(''), 400);
             }
         }
+    }
+
+    function celebrate() {
+        const id = popperId.current++;
+        // Small random sideways drift so repeated clicks don't stack in a line
+        setPoppers((p) => [...p, { id, drift: (Math.random() - 0.5) * 60 }]);
     }
 
     function deleteLast() {
@@ -118,12 +126,28 @@ export default function Lock({ onUnlock }: LockProps) {
 
             {/* Footer */}
             <div className="flex w-full items-end justify-between">
-                <button
-                    type="button"
-                    className="cursor-pointer select-none touch-manipulation text-sm font-extralight transition-opacity hover:opacity-70 active:opacity-50"
-                >
-                    Celebrate
-                </button>
+                <div className="relative">
+                    {poppers.map(({ id, drift }) => (
+                        <motion.span
+                            key={id}
+                            aria-hidden
+                            className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 text-2xl"
+                            initial={{ opacity: 1, y: 0, x: 0, scale: 0.6 }}
+                            animate={{ opacity: 0, y: -160, x: drift, scale: 1.2 }}
+                            transition={{ duration: 1.2, ease: 'easeOut' }}
+                            onAnimationComplete={() => setPoppers((p) => p.filter((x) => x.id !== id))}
+                        >
+                            🎉
+                        </motion.span>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={celebrate}
+                        className="cursor-pointer select-none touch-manipulation text-sm font-extralight transition-opacity hover:opacity-70 active:opacity-50"
+                    >
+                        Celebrate
+                    </button>
+                </div>
                 <button
                     type="button"
                     onPointerDown={code.length > 0 ? deleteLast : undefined}
