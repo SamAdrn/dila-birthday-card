@@ -27,13 +27,48 @@ export const WISHES: Wish[] = [
         tint: 'sky',
     },
     {
+        id: 'papie',
+        name: 'Papie Tovi',
+        title: 'Dirgahayu Dhil..Dhil..',
+        message: `Selamat birthday ponakanku... sehat selalu, bahagia selalu, sukses selalu.
+            Dimudahkan dan dilancarkan segala urusannya, tercapai apa yang dicita-citakan.
+            Berkah Tuhan menyertai selalu...
+            😘😘😘`,
+        priority: 2,
+        tint: 'lilac',
+    },
+    {
         id: 'sam',
         name: 'Sam',
         title: 'Happy Birthday Sayangg! ❤️',
         message:
             'I hope you get to enjoy your birthdayy, reminding yourself of the signifcant presence you have on all our lives and how we all love you so very much. To many more birthdays to come! 🥂',
-        priority: 2,
+        priority: 3,
         tint: 'butter',
+    },
+    {
+        id: 'yuda',
+        name: 'YUDS',
+        title: 'HBD',
+        message: `HBDDDDD
+
+        happy birthday fadhh!!! wishing you nothing but good things in life, more happiness, more opportunities, less worries. semoga semua hal yg km usahakan bisa tercapaii, selalu diberi kesehatan, kebahagiaan, dan dikelilingi oleh orang2 baik. all the best for youu, happy 25th fadd`,
+    },
+    {
+        id: 'randi',
+        name: 'randi',
+        title: '25 taun nii 🎉🥳',
+        message: 'semoga bahagia terus, hidup yang lama biar bisa berguna buat kita kita fad',
+    },
+    {
+        id: 'rian',
+        name: 'rian',
+        title: 'bebski happy 25th birthday <3',
+        message: `happy 25th birthday, dhil! wishing you an abundance of success, happiness, and good health. even though we’ve only known each other for a while, i can see how much you’ve grown as a person. you’re doing so much better than when we first met (not that there was anything wrong back then), but i guess that’s what being human is all about. we’re always growing and striving to become better versions of ourselves. look at you joining running events left and right, kerennnnnn!
+
+                semoga di umur yang baru ini lo terus berkembang dan selalu bahagia, especially with the people around you, because they all genuinely love and care about you. also, 25 is usually the quarter life crisis age, but i hope you get through it smoothly and that everything you do and every decision you make is always dimudahkan.
+
+                semangat terus, bebski! gue menyusul 25 tahun depan. rawrrrr`,
     },
     {
         id: 'agasha',
@@ -42,18 +77,12 @@ export const WISHES: Wish[] = [
         message: 'Semoga terus semangat lari supaya taun depan bisa race bareng2 lagi 🏃‍♀️💨',
     },
     {
-        id: 'steffanus',
-        name: 'Steffanus',
-        title: 'Pibesdey Dhil!',
-        message: 'Wish you all the best! Semoga dikabulkan semua yang di semogakan!',
+        id: 'chacha',
+        name: 'Chachu cantik sedunia',
+        title: 'HAPPY BIRTHDAY JELEK',
+        message:
+            'HAPPY BIRTHDAY MY JELEK I LOVE U FOREVER MAKASIH YA UDH JD TEMEN GUE SINCE FOREVERRRR ❤️❤️❤️❤️ makasih jg udah bela2in ke INDO FOR ME 🫶🫶 kaget gak gw bs ngucapin ini pdhl gue lg sm lo IXIXIXIXIXZI LOVE U 4EVER MY LOVE FADEHHHHH MY MURTAD FRIEND 🫶💗💗💗',
     },
-    {
-        id: 'christabel',
-        name: 'Christabel',
-        title: 'Happyyyy Birthday DILAALALALA!!!',
-        message: 'Wishing you a wonderful birthday 🕺🕺',
-    },
-
     {
         id: 'raska',
         name: 'Raska',
@@ -74,11 +103,30 @@ export const WISHES: Wish[] = [
             'HBD YAHH FAD, may life always be kind to you super grateful for this friendship, even across 10k miles ✈️',
     },
     {
+        id: 'steffanus',
+        name: 'Steffanus',
+        title: 'Pibesdey Dhil!',
+        message: 'Wish you all the best! Semoga dikabulkan semua yang di semogakan!',
+    },
+    {
+        id: 'denisa',
+        name: 'Denisa',
+        title: 'HAPPY BIRTHDAY DILA SAYANG ❤️YAY 25!!!!',
+        message:
+            'Happy birthday Dila ❤️ you’re so loved by everyone around you, I hope you get to spend ur birthday with ur loved ones di Indo. Can’t wait to celebrate with you when you get back!!',
+    },
+    {
         id: 'natasha',
         name: 'Natasha',
         title: 'Happy mid-quarter life crisis birthday!',
         message:
             'Welcome to big 25, hope this year brings you so much happiness and everything your heart desires!!! 💕💕💕',
+    },
+    {
+        id: 'christabel',
+        name: 'Christabel',
+        title: 'Happyyyy Birthday DILAALALALA!!!',
+        message: 'Wishing you a wonderful birthday 🕺🕺',
     },
     {
         id: 'louis-luce',
@@ -98,14 +146,28 @@ export const WISHES: Wish[] = [
     {
         id: 'fajri',
         name: 'Fudge',
-        title: 'Happy belated birthdayy Fadhilaaa!! ',
+        title: 'Happy belated birthdayy Fadhilaaa!!',
         message:
             'Hope you stay healthy, happy, and blessed alwaysss 🫶🏻💗 hope everything you’re working towards works out for you and life keeps treating you good. Keep being your cool ass self and never changee!! 🥳�',
+    },
+    {
+        id: 'sigap',
+        name: 'Sigap make some noise',
+        title: 'Hepi birthday!',
+        message:
+            'NEW YORK MAKE SOME NOISE HABEDE all the best wishes for youu Fad! Bahagia selalu, sukses sakses, and may God always bless you throughout your life aminnn',
     },
     {
         id: 'satrio',
         name: 'Bang Disco',
         title: 'Happy Birthday Dila semoga selalu di dalam lindungan Allah SWT. Panjang umur pendek problem!!!!!',
+    },
+    {
+        id: 'radut',
+        name: 'radut',
+        title: 'happy 25th fadh! so u gotta run 25k ok',
+        message:
+            'happiest birthday to ex bintaro peeps. wishing you endless blessing and tons of luck ahead. keep lacing up ya 🏃‍♀️🏃‍♀️',
     },
     {
         id: 'denisa-carla',
@@ -114,7 +176,12 @@ export const WISHES: Wish[] = [
         message:
             'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
     },
-
+    {
+        id: 'william',
+        name: 'William Nguyen',
+        title: 'Happiest to your quarter century!',
+        message: 'May your next year be full of pain free miles on strava!',
+    },
     {
         id: 'rafy',
         name: 'Rafy',
@@ -149,13 +216,6 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         name: 'Alhubab',
         title: 'Happy quarter of life Dila!',
         message: 'Semoga panjang semua nya',
-    },
-    {
-        id: 'denisa',
-        name: 'Denisa',
-        title: 'HAPPY BIRTHDAY DILA SAYANG ❤️YAY 25!!!!',
-        message:
-            'Happy birthday Dila ❤️ you’re so loved by everyone around you, I hope you get to spend ur birthday with ur loved ones di Indo. Can’t wait to celebrate with you when you get back!!',
     },
     {
         id: 'iyung',
