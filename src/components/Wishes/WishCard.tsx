@@ -11,8 +11,8 @@ const TINT_BG: Record<Tint, string> = {
     blush: 'bg-wish-blush',
 };
 
-export default function WishCard({ wish }: { wish: Wish }) {
-    const { name, title, message, tint } = wish;
+export default function WishCard({ wish, tint }: { wish: Wish; tint: Tint }) {
+    const { name, title, message } = wish;
 
     return (
         <motion.article
@@ -22,7 +22,10 @@ export default function WishCard({ wish }: { wish: Wish }) {
             viewport={{ once: true, margin: '0px 0px -40px 0px' }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
         >
+            {/* Wish Title */}
             <h3 className="text-base leading-snug font-semibold">{title}</h3>
+
+            {/* Wish Message (optional) */}
             {message && <p className="mt-2 text-sm leading-snug whitespace-pre-line text-ink/80">{message}</p>}
 
             {/* Signature */}
