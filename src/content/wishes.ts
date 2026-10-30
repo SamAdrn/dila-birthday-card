@@ -182,7 +182,7 @@ export const WISHES: Wish[] = [
         message: 'Happy Birthday Dila! Hope all your wishes come true this year!',
     },
     {
-        id: 'p',
+        id: 'prajna',
         name: 'PE',
         title: 'welcome to your quarter-life era fadd 🙌🏻',
         message:

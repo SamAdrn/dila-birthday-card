@@ -9,6 +9,7 @@ export const BEATS: Beat[] = [
     { year: 2010, photo: { src: '/photos/2010.jpg', shape: 'portrait' } },
     { year: 2017, photo: { src: '/photos/2017.jpg', shape: 'portrait' } },
     { year: 2019, photo: { src: '/photos/2019.jpg', shape: 'portrait' } },
+    { year: 2024, photo: { src: '/photos/2024.jpg', shape: 'portrait' } },
 ];
 
 export const yearsAgo = (year: number) => new Date().getFullYear() - year;
