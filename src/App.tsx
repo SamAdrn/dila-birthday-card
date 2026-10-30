@@ -35,7 +35,7 @@ function App() {
         // Outer shell fills the viewport; the inner column keeps content phone-width on desktop
         <div className="isolate min-h-dvh bg-mist-900 flex justify-center">
             <Wallpaper visible={stage !== 'main'} />
-            <Notch unlocked={unlocked} />
+            <Notch unlocked={unlocked} celebrating={stage === 'main'} />
             <main className="w-full max-w-md">
                 <AnimatePresence mode="popLayout">
                     {stage === 'lock' && (
