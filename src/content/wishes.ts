@@ -159,6 +159,20 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
                 semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
     },
     {
+        id: 'putut',
+        name: 'Putut',
+        title: 'Happy birthda fade!!',
+        message:
+            'Wishing you the happiest birthday! May this year bring you lots of happiness, good health, and everything you wishes for ya fadhhh. Semoga apa pun yang diinginkan tercapai semua. Miss you & love you lotsss🫶',
+    },
+    {
+        id: 'ratu',
+        name: 'Ratu',
+        title: 'HAPIBAAAAAA FADHHH<3',
+        message:
+            'Happy 25th birthday, fadh!! 🎉 We’ve officially entered the quarter-life crisis ^__^ May all the happiness in this world find its way to you. I actually miss you so much, but I don’t know how to say it HAHA malu. Ya pokoknya, aku selalu support apa pun yang km lakukan and I know you’ll do great at anything anyway. Luvvvvvv<3',
+    },
+    {
         id: 'rafy',
         name: 'Rafy',
         title: 'Selamat Hbd Mba Dila',
