@@ -1,11 +1,36 @@
-import { WISHES } from '../../content/wishes';
+import { WISHES, type Wish } from '../../content/wishes';
 import WishCard from './WishCard';
 
-// The two columns alternate: the 1st, 3rd, 5th... wish on the left, the rest on the right
-const LEFT = WISHES.filter((_, i) => i % 2 === 0);
-const RIGHT = WISHES.filter((_, i) => i % 2 === 1);
+// Wishes without a priority go after every ranked one
+const UNRANKED = 99;
 
-// The hero's "Your wishes" button scrolls to this id
+// Rough card height in characters: the columns are narrow, so text length is a good proxy.
+// These numbers are guesses; tune them if the columns end up uneven on the phone.
+const CHROME = 80; // padding, gaps and the sign-off row
+const TITLE_BONUS = 1.3; // the title is larger and heavier than the message
+const RIGHT_OFFSET = 30; // the right column is nudged down by mt-7
+
+const weight = (wish: Wish) => CHROME + wish.title.length * TITLE_BONUS + (wish.message?.length ?? 0);
+
+// Array.prototype.sort is stable, so equal priorities keep their order in the file
+const ORDERED = [...WISHES].sort((a, b) => (a.priority ?? UNRANKED) - (b.priority ?? UNRANKED));
+
+// Each wish goes in the shorter column (ties go left), so the order reads
+// left, right, then whichever side is short, and tall cards don't pile up on one side
+const LEFT: Wish[] = [];
+const RIGHT: Wish[] = [];
+let leftHeight = 0;
+let rightHeight = RIGHT_OFFSET;
+for (const wish of ORDERED) {
+    if (leftHeight <= rightHeight) {
+        LEFT.push(wish);
+        leftHeight += weight(wish);
+    } else {
+        RIGHT.push(wish);
+        rightHeight += weight(wish);
+    }
+}
+
 export default function Wishes() {
     return (
         <section id="wishes" className="px-6 pt-14 pb-12">
