@@ -9,10 +9,17 @@ import Wallpaper from './components/Wallpaper/Wallpaper';
 import { HERO_PHOTO } from './content/photos';
 
 type Stage = 'lock' | 'story' | 'main';
+const STAGES: Stage[] = ['lock', 'story', 'main'];
+
+// Open the site at a later stage, e.g. /?stage=main (handy for testing the wishes, locally or on the phone)
+function startStage() {
+    const stage = new URLSearchParams(window.location.search).get('stage');
+    return STAGES.find((s) => s === stage) ?? 'lock';
+}
 
 function App() {
-    const [stage, setStage] = useState<Stage>('lock');
-    const [unlocked, setUnlocked] = useState(false);
+    const [stage, setStage] = useState<Stage>(startStage);
+    const [unlocked, setUnlocked] = useState(stage !== 'lock'); // skipping the lock means the notch is already open
 
     // The hero is the last stop, so start fetching its photo now and it's ready when the story ends
     useEffect(() => {
