@@ -53,11 +53,12 @@ export const WISHES: Wish[] = [
         title: 'Happyyyy Birthday DILAALALALA!!!',
         message: 'Wishing you a wonderful birthday 🕺🕺',
     },
+
     {
-        id: 'vinno',
-        name: 'Vinno Tan',
-        title: 'Happy Birthday Dila!!!',
-        message: 'Jgn gila gila yaa! Tambahin rasa cinta ke orang tua, sam, dan teman” biar bisa makin deket!',
+        id: 'raska',
+        name: 'Raska',
+        title: 'Habede',
+        message: 'Habede',
     },
     {
         id: 'biru',
@@ -66,11 +67,18 @@ export const WISHES: Wish[] = [
         message: 'Semoga di beri kesehatan selalu, kelancaraan dan ajarin lari dong hehehe',
     },
     {
-        id: 'rafael',
-        name: 'Rafael Rusydi',
-        title: 'Happy birthday Fadila Wish You All The Best i hope you have a nice Birthday 🎂 🎉🎉🎂🎉',
+        id: 'prajna',
+        name: 'PE',
+        title: 'welcome to your quarter-life era fadd 🙌🏻',
         message:
-            'Mudah2an you get everything you wanted in life, always healthy and happy hope everything works out well',
+            'HBD YAHH FAD, may life always be kind to you super grateful for this friendship, even across 10k miles ✈️',
+    },
+    {
+        id: 'natasha',
+        name: 'Natasha',
+        title: 'Happy mid-quarter life crisis birthday!',
+        message:
+            'Welcome to big 25, hope this year brings you so much happiness and everything your heart desires!!! 💕💕💕',
     },
     {
         id: 'louis-luce',
@@ -78,12 +86,14 @@ export const WISHES: Wish[] = [
         title: 'happy Birthday Dila! Panjang umur sehat selalu, all your wish come true in the upcoming years. Cheers!',
         message: 'Miso also says happy birthday kakak 🐱 🐱 🐱 ',
     },
+
     {
-        id: 'jo',
-        name: 'Jo :)',
-        title: 'hepi bdei',
-        message:
-            'Dila!! Happy 25th birthday!! Hope you have so much fun celebrating and an awesome year ahead, and that the quarter life crisis doesn’t hit too hard hahhaha… all the best :)',
+        id: 'alvito',
+        name: 'Alvito pake F',
+        title: 'HABEDE FADH',
+        message: `Selamat ulang tahun fadhila, semoga makin jago larinya biar bisa jadi full marathoner, semoga langgeng sama sam dan CEPET NIKAH biar gue ada alesan ke US hehehehehe. sorry kalo kita gabisa ketemu di jakarta sekarang, semoga next gue n RSL yg bisa nyamperin lu sama sam sama buita ke US WAKAKAKAKA. 
+
+                semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
     },
     {
         id: 'fajri',
@@ -98,17 +108,28 @@ export const WISHES: Wish[] = [
         title: 'Happy Birthday Dila semoga selalu di dalam lindungan Allah SWT. Panjang umur pendek problem!!!!!',
     },
     {
-        id: 'natasha',
-        name: 'Natasha',
-        title: 'Happy mid-quarter life crisis birthday!',
+        id: 'denisa-carla',
+        name: 'Denisa Carla',
+        title: 'Happy 25th Birthday!!',
         message:
-            'Welcome to big 25, hope this year brings you so much happiness and everything your heart desires!!! 💕💕💕',
+            'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
     },
+
     {
         id: 'rafy',
         name: 'Rafy',
         title: 'Selamat Hbd Mba Dila',
         message: 'Semoga yg disemogakan terkabulkan. Wyatb!',
+    },
+    {
+        id: 'tempo',
+        name: "The Tempo's (Mos, Yol, Biru and Jingga)",
+        title: 'Cheers to 25 – to the Fabulous Fadhila!',
+        message: `Cheers to 25! 
+25 years young, 25 years awesome, and still counting!
+May this year bring you 25x more happiness, adventures, and reasons to smile!.Muuuach!
+
+With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
     },
     {
         id: 'laskar',
@@ -149,12 +170,11 @@ export const WISHES: Wish[] = [
         message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
     },
     {
-        id: 'alvito',
-        name: 'Alvito pake F',
-        title: 'HABEDE FADH',
-        message: `Selamat ulang tahun fadhila, semoga makin jago larinya biar bisa jadi full marathoner, semoga langgeng sama sam dan CEPET NIKAH biar gue ada alesan ke US hehehehehe. sorry kalo kita gabisa ketemu di jakarta sekarang, semoga next gue n RSL yg bisa nyamperin lu sama sam sama buita ke US WAKAKAKAKA. 
-
-                semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
+        id: 'jo',
+        name: 'Jo :)',
+        title: 'hepi bdei',
+        message:
+            'Dila!! Happy 25th birthday!! Hope you have so much fun celebrating and an awesome year ahead, and that the quarter life crisis doesn’t hit too hard hahhaha… all the best :)',
     },
     {
         id: 'irham',
@@ -167,6 +187,25 @@ export const WISHES: Wish[] = [
         name: 'bagas baso',
         title: 'FAD HBD 🎉🥳🎂',
         message: 'semoga semakin baddie',
+    },
+    {
+        id: 'faris',
+        name: 'Faris',
+        title: 'Happy birthday, Dila!',
+        message:
+            'Welcome to the new age. Semoga diberi umur panjang, sukses dunia akhirat. Makin seru lagi. Aamiin yra',
+    },
+    {
+        id: 'asa',
+        name: 'Asa',
+        title: 'Happy makin tua fad!!',
+        message: 'Semoga segalanya dilancarkan dan dimudahkan diberikan kesehatan selalu',
+    },
+    {
+        id: 'vinno',
+        name: 'Vinno Tan',
+        title: 'Happy Birthday Dila!!!',
+        message: 'Jgn gila gila yaa! Tambahin rasa cinta ke orang tua, sam, dan teman” biar bisa makin deket!',
     },
     {
         id: 'gande',
@@ -182,13 +221,6 @@ export const WISHES: Wish[] = [
         message: 'Happy Birthday Dila! Hope all your wishes come true this year!',
     },
     {
-        id: 'prajna',
-        name: 'PE',
-        title: 'welcome to your quarter-life era fadd 🙌🏻',
-        message:
-            'HBD YAHH FAD, may life always be kind to you super grateful for this friendship, even across 10k miles ✈️',
-    },
-    {
         id: 'wanderlust',
         name: 'The wanderlust',
         title: 'HAPPY BIRTHDAY JAGUNG BAKAR ALIAS FADHH!! ',
@@ -196,39 +228,10 @@ export const WISHES: Wish[] = [
             'Semoga in this part of your life bisa achieve apa yang lo kejar yaaa, bisa kasih yang terbaik buat lo dan bu ita! Sehat selalu yee ',
     },
     {
-        id: 'raska',
-        name: 'Raska',
-        title: 'Habede',
-        message: 'Habede',
-    },
-    {
-        id: 'denisa-carla',
-        name: 'Denisa Carla',
-        title: 'Happy 25th Birthday!!',
+        id: 'rafael',
+        name: 'Rafael Rusydi',
+        title: 'Happy birthday Fadila Wish You All The Best i hope you have a nice Birthday 🎂 🎉🎉🎂🎉',
         message:
-            'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
-    },
-    {
-        id: 'tempo',
-        name: "The Tempo's (Mos, Yol, Biru and Jingga)",
-        title: 'Cheers to 25 – to the Fabulous Fadhila!',
-        message: `Cheers to 25! 
-25 years young, 25 years awesome, and still counting!
-May this year bring you 25x more happiness, adventures, and reasons to smile!.Muuuach!
-
-With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
-    },
-    {
-        id: 'faris',
-        name: 'Faris',
-        title: 'Happy birthday, Dila!',
-        message:
-            'Welcome to the new age. Semoga diberi umur panjang, sukses dunia akhirat. Makin seru lagi. Aamiin yra',
-    },
-    {
-        id: 'asa',
-        name: 'Asa',
-        title: 'Happy makin tua fad!!',
-        message: 'Semoga segalanya dilancarkan dan dimudahkan diberikan kesehatan selalu',
+            'Mudah2an you get everything you wanted in life, always healthy and happy hope everything works out well',
     },
 ];
