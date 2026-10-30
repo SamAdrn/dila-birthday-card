@@ -30,3 +30,23 @@
     --color-wish-lilac: #e0d5f7;
     --color-wish-blush: #fbd3da;
 }
+
+/* The face rain: each face falls from just above the hero to just below it (the hero is 100dvh tall),
+   and sways and rocks as it goes. The sway and tilt come in as custom properties, piece by piece. */
+@keyframes face-fall {
+    from {
+        transform: translateY(-120px);
+    }
+    to {
+        transform: translateY(calc(100dvh + 40px));
+    }
+}
+
+@keyframes face-sway {
+    from {
+        transform: translateX(calc(var(--sway) * -1)) rotate(calc(var(--tilt) * -1));
+    }
+    to {
+        transform: translateX(var(--sway)) rotate(var(--tilt));
+    }
+}

@@ -2,6 +2,7 @@ import { motion, type Variants } from 'framer-motion';
 
 import { HERO_PHOTO } from '../../content/photos';
 import Confetti from './Confetti';
+import FaceRain from './FaceRain';
 import Sparkle from './Sparkle';
 
 const LINES = [
@@ -22,6 +23,8 @@ const POPPER_DELAY_S = LETTERS_DELAY_S + LETTER_COUNT * LETTER_STEP_S;
 const NAME_DELAY_S = POPPER_DELAY_S + 0.3;
 const UNDERLINE_DELAY_S = NAME_DELAY_S + 0.4;
 const HINT_DELAY_S = NAME_DELAY_S + 1;
+// The rain waits for everything else: the "Your wishes" hint is the last thing to arrive, and takes 0.8s to fade in
+const FACE_RAIN_DELAY_S = HINT_DELAY_S + 0.8;
 
 const GLOW_DRIFT_PX = 16; // how far the peach glow wanders from its spot
 const GLOW_DRIFT_S = 22; // one full lap
@@ -103,8 +106,10 @@ export default function Hero() {
                 transition={{ duration: GLOW_DRIFT_S, repeat: Infinity, ease: 'easeInOut' }}
             />
             <Confetti delay={CONFETTI_DELAY_S} />
+            <FaceRain delay={FACE_RAIN_DELAY_S} />
 
-            <div className="relative flex flex-1 flex-col items-center justify-center gap-5">
+            {/* pointer-events-none: this box spans the hero and holds nothing to click, so taps go through it to the faces behind */}
+            <div className="pointer-events-none relative flex flex-1 flex-col items-center justify-center gap-5">
                 <motion.div
                     className="relative aspect-300/380 h-[min(380px,45dvh)] shrink-0 overflow-hidden rounded-t-full rounded-b-md border-8 border-white bg-gray-400 shadow-xl"
                     variants={photoVariants}

@@ -6,6 +6,7 @@ import Main from './components/Main/Main';
 import Notch from './components/Notch/Notch';
 import Story from './components/Story/Story';
 import Wallpaper from './components/Wallpaper/Wallpaper';
+import { FACES } from './content/faces';
 import { HERO_PHOTO } from './content/photos';
 
 type Stage = 'lock' | 'story' | 'main';
@@ -21,9 +22,11 @@ function App() {
     const [stage, setStage] = useState<Stage>(startStage);
     const [unlocked, setUnlocked] = useState(stage !== 'lock'); // skipping the lock means the notch is already open
 
-    // The hero is the last stop, so start fetching its photo now and it's ready when the story ends
+    // The hero is the last stop, so start fetching its photo (and the faces that rain on it) now and
+    // they're ready when the story ends
     useEffect(() => {
         if (HERO_PHOTO) new Image().src = HERO_PHOTO;
+        for (const face of FACES) new Image().src = face.src;
     }, []);
 
     function handleUnlock() {
