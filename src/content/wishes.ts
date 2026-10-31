@@ -179,11 +179,32 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         message: 'Semoga yg disemogakan terkabulkan. Wyatb!',
     },
     {
+        id: 'james',
+        name: 'JAMES UNCH',
+        title: 'Happyyyy 25th!',
+        message:
+            'FADHILA happy bersdey my girlllllll ways love you to the moon and back!!!!!!!! God bless you and alwayssss be happyyyy!!! Xoxoo LOVEEEEE',
+    },
+    {
+        id: 'gendis',
+        name: 'gendisus',
+        title: 'enjoy 25 fadh!',
+        message:
+            'HAPPY BIRTHDAY FADHHH!! thank you ya sudah menjadi my best friend!! semoga di tahun ini hanya kebaikan yang datang secara terus menerus ke lo dan ke orang2 terdekat loooo... semoga selalu diberikan kebahagiaan juga di setiap harinya dan selalu melewati hati-hari dengan tertawa!! very grateful to have you in my life fadh, enjoy 25 cheerrrssss',
+    },
+    {
         id: 'radut',
         name: 'radut',
         title: 'happy 25th fadh! so u gotta run 25k ok',
         message:
             'happiest birthday to ex bintaro peeps. wishing you endless blessing and tons of luck ahead. keep lacing up ya 🏃‍♀️🏃‍♀️',
+    },
+    {
+        id: 'bagus',
+        name: 'bagus',
+        title: 'hbd y🫵',
+        message:
+            'selamat ulang tahun temen gua yang marah kalo ulang tahunnya dilupain tapi gainget ulang tahun gua. semoga diberikan terus kebahagiaan siapapun presidennya. ',
     },
     {
         id: 'denisa-carla',
@@ -268,11 +289,18 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         message: 'semoga semakin baddie',
     },
     {
-        id: 'faris',
-        name: 'Faris',
-        title: 'Happy birthday, Dila!',
+        id: 'angie',
+        name: 'angie',
+        title: 'happy birthday fadhilaa!',
         message:
-            'Welcome to the new age. Semoga diberi umur panjang, sukses dunia akhirat. Makin seru lagi. Aamiin yra',
+            'god bless you and wish you all the best 🥺 kangen sekalii dan sudah lama tak berjumpa. sukses terus yaa dimana pun kamu berada, hoping we could meet again n have fun together 🫶🏻',
+    },
+    {
+        id: 'ghina',
+        name: 'Ghina Arda',
+        title: 'Happy Birthday, Fadhila 🩶',
+        message:
+            'FADDDDD happy birthday 🩶 alhamdulilah udah lewatin banyak ulangtahun lo selama ini mungkin udah 5 kali???? HAHA skrg udah 25 tahun semoga lo semakin baik di semua nya, dilancarin semua yg lo jalanin, makin bahagia teruuuus, tercapai semua cita2 & harapannya, semoga selalu jd pribadi yang baik & membanggakaan semua nya. semoga yg lo mau tercapai semuanya, sehat2 teruuuss jgn sakit2 ya semoga semua sakit nya diangkat sama Allahhhh semoga hal baik selalu menyertai lo & hidup lo selama nya!!! love yooouuuuu',
     },
     {
         id: 'asa',
@@ -302,9 +330,15 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
     {
         id: 'wanderlust',
         name: 'The wanderlust',
-        title: 'HAPPY BIRTHDAY JAGUNG BAKAR ALIAS FADHH!! ',
+        title: 'HAPPY BIRTHDAY JAGUNG BAKAR ALIAS FADHH!!',
         message:
-            'Semoga in this part of your life bisa achieve apa yang lo kejar yaaa, bisa kasih yang terbaik buat lo dan bu ita! Sehat selalu yee ',
+            'Semoga in this part of your life bisa achieve apa yang lo kejar yaaa, bisa kasih yang terbaik buat lo dan bu ita! Sehat selalu yee',
+    },
+    {
+        id: 'thomas',
+        name: 'thomas',
+        title: 'hepibedey fadhilahh filzahh',
+        message: 'semoga panjang umur, sehat selalu, sukses dan segala doa terkabulkan yow 🤘🥳',
     },
     {
         id: 'rafael',
@@ -312,5 +346,11 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         title: 'Happy birthday Fadila Wish You All The Best i hope you have a nice Birthday 🎂 🎉🎉🎂🎉',
         message:
             'Mudah2an you get everything you wanted in life, always healthy and happy hope everything works out well',
+    },
+    {
+        id: 'nathan',
+        name: 'Nathan Sidik',
+        title: 'Happy 25th Dila!! Wish you all the best',
+        message: 'Langgeng sama samy',
     },
 ];
