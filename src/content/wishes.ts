@@ -145,18 +145,18 @@ May this year bring you 25x more happiness, adventures, and reasons to smile!.Mu
 With love from the Tempo Family, grateful to be part of your beautiful and joyful journey.`,
     },
     {
-        id: 'tante-vivi',
-        name: 'Princess Consuela Banana Hammock',
-        title: 'SELAMAT ULANG TAHUN, DEAR FADHILA',
-        message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
-    },
-    {
         id: 'alvito',
         name: 'Alvito pake F',
         title: 'HABEDE FADH',
         message: `Selamat ulang tahun fadhila, semoga makin jago larinya biar bisa jadi full marathoner, semoga langgeng sama sam dan CEPET NIKAH biar gue ada alesan ke US hehehehehe. sorry kalo kita gabisa ketemu di jakarta sekarang, semoga next gue n RSL yg bisa nyamperin lu sama sam sama buita ke US WAKAKAKAKA. 
 
                 semoga sehat selalu juga fadh, semoga bisa cepet dapet kuliah S2 di US atau bisa kerja full time disana yoo dan yang terpenting HARUS BANYAK BANYAK HAPPY YA FADH. intinya wish you all the goodnesss Amiin GBU. SALAM BUAT SAM N BUITA `,
+    },
+    {
+        id: 'tante-vivi',
+        name: 'Princess Consuela Banana Hammock',
+        title: 'SELAMAT ULANG TAHUN, DEAR FADHILA',
+        message: 'Semoga sehat selalu, semua rencana lancar dijalani, tambah rejeki.',
     },
     {
         id: 'putut',
@@ -207,6 +207,13 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
             'selamat ulang tahun temen gua yang marah kalo ulang tahunnya dilupain tapi gainget ulang tahun gua. semoga diberikan terus kebahagiaan siapapun presidennya. ',
     },
     {
+        id: 'ray-and-sheila',
+        name: 'Ray and Sheila',
+        title: 'Happiest 25th birthday, Dila!',
+        message:
+            "We are grateful for your friendship and all the adventures we get to share! May the year ahead bring you happines, good health, and as much joy as you bring to those around you. Here's to many more adventures together! 🥂",
+    },
+    {
         id: 'denisa-carla',
         name: 'Denisa Carla',
         title: 'Happy 25th Birthday!!',
@@ -214,11 +221,11 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
             'Selamat ulang tahun Fadhila! Miss you so muchh and I hope you have an amazing birthday in Indo this year. Can’t wait to see you when I’m back in Arlington😊 enjoy your trip!!',
     },
     {
-        id: 'ray-and-sheila',
-        name: 'Ray and Sheila',
-        title: 'Happiest 25th birthday, Dila!',
+        id: 'faris',
+        name: 'Faris',
+        title: 'Happy birthday, Dila!',
         message:
-            "We are grateful for your friendship and all the adventures we get to share! May the year ahead bring you happines, good health, and as much joy as you bring to those around you. Here's to many more adventures together! 🥂",
+            'Welcome to the new age. Semoga diberi umur panjang, sukses dunia akhirat. Makin seru lagi. Aamiin yra',
     },
     {
         id: 'fajri',
@@ -240,16 +247,23 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         title: 'Happy Birthday Dila semoga selalu di dalam lindungan Allah SWT. Panjang umur pendek problem!!!!!',
     },
     {
+        id: 'sumi',
+        name: 'Sumiiii',
+        title: 'HBD SAYANGKUUUU <3',
+        message: 'Semogaa diberi kelancaran, kesehatan, dan rezeki selaluuu yaa! ❤️',
+    },
+    {
         id: 'louis-luce',
         name: 'LouLu',
         title: 'happy Birthday Dila! Panjang umur sehat selalu, all your wish come true in the upcoming years. Cheers!',
-        message: 'Miso also says happy birthday kakak 🐱 🐱 🐱 ',
+        message: 'Miso also says happy birthday kakak 🐱 🐱 🐱',
     },
     {
-        id: 'william',
-        name: 'William Nguyen',
-        title: 'Happiest to your quarter century!',
-        message: 'May your next year be full of pain free miles on strava!',
+        id: 'nike-michael-mira',
+        name: 'Nike, Michael, Mira',
+        title: 'Happiest birthday, Kaka Dhila!',
+        message:
+            'We love you and so grateful to have you in our life. Mudah2an panjang umur, sehat selalu dan jadi rahmatan lil alamin. ',
     },
     {
         id: 'laskar',
@@ -296,11 +310,31 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
             'god bless you and wish you all the best 🥺 kangen sekalii dan sudah lama tak berjumpa. sukses terus yaa dimana pun kamu berada, hoping we could meet again n have fun together 🫶🏻',
     },
     {
+        id: 'cocolmanja',
+        name: 'cocolmanja',
+        title: 'hbddd fadhilaa',
+        message:
+            'Habedeee fadd semogaaa semua yang diimpikann dan dicita citakaan semuanyaa terwujud yaa faddd, happy teruss fadd ',
+    },
+    {
+        id: 'william',
+        name: 'William Nguyen',
+        title: 'Happiest to your quarter century!',
+        message: 'May your next year be full of pain free miles on strava!',
+    },
+    {
         id: 'ghina',
         name: 'Ghina Arda',
         title: 'Happy Birthday, Fadhila 🩶',
         message:
             'FADDDDD happy birthday 🩶 alhamdulilah udah lewatin banyak ulangtahun lo selama ini mungkin udah 5 kali???? HAHA skrg udah 25 tahun semoga lo semakin baik di semua nya, dilancarin semua yg lo jalanin, makin bahagia teruuuus, tercapai semua cita2 & harapannya, semoga selalu jd pribadi yang baik & membanggakaan semua nya. semoga yg lo mau tercapai semuanya, sehat2 teruuuss jgn sakit2 ya semoga semua sakit nya diangkat sama Allahhhh semoga hal baik selalu menyertai lo & hidup lo selama nya!!! love yooouuuuu',
+    },
+    {
+        id: 'aisyah',
+        name: 'Aisyah',
+        title: 'HAPPIEST BIRTHDAY my urban girl ',
+        message:
+            'happyy birthday my MLG-DC girl, i hope you enjoy twenty-five!! semoga umurnya berkah selalu, dimudahkan selalu segara urusannya, ceria selalu, sayang kita terus sampe kapapun yaa fadh <3 i hope everything you wish for tercapai dan dikasih kesempatan sama tuhan untuk selalu berteman sama lo dan jadi salah satu orang yang selalu ada buat lo 🫰🏻🫰🏻🫰🏻',
     },
     {
         id: 'asa',
@@ -320,6 +354,13 @@ With love from the Tempo Family, grateful to be part of your beautiful and joyfu
         title: 'HBD FADH!!!',
         message:
             'Semoga di usia yang sekarang semakin jaya di darat, laut dan udara serta di lapangan pickleball dan track lari. Sehat selalu, dilancarkan rezekinya dan semakin sukses 🙏🏻🙏🏻🙏🏻',
+    },
+    {
+        id: 'reno',
+        name: 'Reno',
+        title: 'HBD DHILS',
+        message:
+            'Selamat ulang tahun Fadd, semoga selalu diberikan jalan yang di ridhoi Tuhan, diberikan kesehatan yang tak ada batas, dan kebahagiaan yang tak kenal waktu.',
     },
     {
         id: 'fawwaz',

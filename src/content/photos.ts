@@ -40,8 +40,9 @@ export const WISH_PHOTOS: WishPhoto[] = [
     { id: 'papie-wish-photo', src: '/photos/wish-papie.jpg', shape: 'portrait', after: 'papie' },
     { id: 'sigap-wish-photo', src: '/photos/wish-sigap.jpg', shape: 'portrait', after: 'sigap' },
     { id: 'natasha-wish-photo', src: '/photos/wish-natasha.jpg', shape: 'portrait', after: 'natasha' },
-    { id: 'faris-wish-photo', src: '/photos/wish-faris.jpg', shape: 'portrait', after: 'faris' },
+    { id: 'ratu-wish-photo', src: '/photos/wish-ratu.jpg', shape: 'portrait', after: 'ratu' },
     { id: 'rian-wish-photo', src: '/photos/wish-rian.jpg', shape: 'portrait', after: 'rian' },
     { id: 'christabel-wish-photo', src: '/photos/wish-christabel.jpg', shape: 'landscape', after: 'christabel' },
     { id: 'steffanus-wish-photo', src: '/photos/wish-steffanus.jpg', shape: 'portrait', after: 'steffanus' },
+    { id: 'radut-wish-photo', src: '/photos/wish-radut.jpg', shape: 'portrait', after: 'radut' },
 ];
